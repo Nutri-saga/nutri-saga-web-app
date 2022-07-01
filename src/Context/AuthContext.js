@@ -20,7 +20,8 @@ export  const AuthProvider  = (props)=>{
         setUser(null)
         const response = axios.get(`${process.env.REACT_APP_BASE_URL}user/logout`)
         console.log(response)
-    }   
+    }
+
     const login = async(username, password)=>{
         try{
             setLoading(true)
@@ -48,6 +49,8 @@ export  const AuthProvider  = (props)=>{
             },2000)
         }
     }
+
+    
     return(
         <AuthContext.Provider
             value={

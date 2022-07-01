@@ -3,9 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthContext } from './Context/AuthContext';
 
-const Login = React.lazy(()=>import('./Components/Login'))
-const Signup = React.lazy(()=>import('./Components/Signup'))
-const Dashboard = React.lazy(()=>import('./Components/Dashboard'))
+const Login = React.lazy(()=>import('./Pages/Login'))
+const Signup = React.lazy(()=>import('./Pages/Signup'))
+const Dashboard = React.lazy(()=>import('./Pages/Dashboard'))
 
 function App() {
   const {user} = useContext(AuthContext)
