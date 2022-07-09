@@ -1,51 +1,82 @@
-import * as React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { CardActions } from "@mui/material";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-import tomato from "../assets/tomatoes.jpg";
-import { valueToPercent } from "@mui/base";
+import { DishContext } from "../Context/DishContext";
 
-export default function DishCard({ val }) {
+export default React.memo(function DishCard({ val }) {
+  const { setDish, dishes, getDish, removeDish } = useContext(DishContext);
+
+  const [cart, setCart] = useState(false);
+
+  useEffect(() => {
+    dishes.map((dish) => {
+      if (dish._id === val._id) {
+        setCart(true);
+        getDish();
+      }
+    });
+  }, []);
+
+  const handleRemove = () => {
+    val["status"] = "add";
+    removeDish(val);
+    setCart(false);
+  };
+  const handleAdd = () => {
+    val["status"] = "remove";
+    setDish(val);
+    setCart(true);
+  };
+
   return (
-    <Card sx={{ width: 300 }}>
+    <Card sx={{ width: 200 }}>
       <CardMedia
         component="img"
         width="100%"
-        height="200"
+        height="auto"
         image={val.image_url["url"]}
-        alt="green iguana"
+        alt={val.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography sx={{fontWeight:"600", letterSpacing:"0.05em", color:"#424242"}} align="center" gutterBottom variant="h5" component="div">
           {val.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <p>
-            <span style={{ fontWeight: "600" }}>Servings</span>
-            {`: ${val.servings}`}
-          </p>
-          <p>
-            <span style={{ fontWeight: "600" }}>Energy</span>
-            {`: ${val.energy}`}
-          </p>
-          <p>
-            <span style={{ fontWeight: "600" }}>Fats</span>
-            {`: ${val.fats}`}
-          </p>
-          <p>
-            <span style={{ fontWeight: "600" }}>Protein</span>
-            {`: ${val.protein}`}
-          </p>
-          <p>
-            <span style={{ fontWeight: "600" }}>Calories</span>
-            {`: ${val.calories}`}
-          </p>
+        <Typography align="left" gutterBottom component="div">
+          <span style={{ fontWeight: "600" }}>Servings</span>
+          {`: ${val.servings}`}
         </Typography>
+        <Typography align="left" gutterBottom component="div">
+          <span style={{ fontWeight: "600" }}>Energy</span>
+          {`: ${val.energy}g`}
+        </Typography>
+        <Typography align="left" gutterBottom component="div">
+          <span style={{ fontWeight: "600" }}>Fats</span>
+          {`: ${val.fats}g`}
+        </Typography>
+        <Typography align="left" gutterBottom component="div">
+          <span style={{ fontWeight: "600" }}>Protein</span>
+          {`: ${val.protein}g`}
+        </Typography>
+        <Typography align="left" gutterBottom component="div">
+          <span style={{ fontWeight: "600" }}>Calories</span>
+          {`: ${val.calories}g`}
+        </Typography>
+
+        <div style={{ marginTop:"10px"}}>
+          {" "}
+          {val["status"] == "remove" || cart ? (
+            <Button variant="contained" color="error" onClick={handleRemove}>Remove <CalendarMonthIcon sx={{marginTop:"-5px", marginLeft:"3px"}} fontSize="small"/></Button>
+          ) : (
+            <Button variant="contained" color="success" onClick={handleAdd}>Add <CalendarMonthIcon sx={{marginTop:"-5px", marginLeft:"3px"}} fontSize="small"/></Button>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
-}
+});

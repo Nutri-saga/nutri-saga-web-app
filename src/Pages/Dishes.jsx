@@ -21,7 +21,7 @@ function Dishes() {
   }, []);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Box
+      {data ? <Box
         sx={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -33,7 +33,7 @@ function Dishes() {
             <DishCard val={val}/>
           </Box>
         ))}
-      </Box>
+      </Box> : <div>Loading...</div>}
     </Suspense>
   );
 }

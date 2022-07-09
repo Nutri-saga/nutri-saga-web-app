@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Button, CardActionArea, TextField, Typography } from "@mui/material";
+import { Button, CardActionArea, CircularProgress, TextField, Typography } from "@mui/material";
 import { addDish, getDishes } from "../Context/ComponentActions";
 import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
@@ -45,11 +45,11 @@ const DishLists = React.memo(function DishLists({ data }) {
       >
         Dish List
       </Typography>
-      <StyleDiv>
+     { data ? <StyleDiv>
         {data.map((val, indx) => (
           <DishList val={val} key={indx} />
         ))}
-      </StyleDiv>
+      </StyleDiv> : <CircularProgress/>}
     </Card>
   );
 });
@@ -190,6 +190,7 @@ export default function AddDishCard() {
                 required
                 sx={{ marginBottom: "10px" }}
                 inputProps={{ style: { height: "12px" } }}
+                type="number"
               />
               <TextField
                 value={state.protein}
@@ -201,6 +202,7 @@ export default function AddDishCard() {
                 required
                 sx={{ marginBottom: "10px" }}
                 inputProps={{ style: { height: "12px" } }}
+                type="number"
               />
               <TextField
                 value={state.fats}
@@ -210,6 +212,7 @@ export default function AddDishCard() {
                 required
                 sx={{ marginBottom: "10px" }}
                 inputProps={{ style: { height: "12px" } }}
+                type="number"
               />
               <TextField
                 value={state.calories}
@@ -221,6 +224,7 @@ export default function AddDishCard() {
                 required
                 sx={{ marginBottom: "10px" }}
                 inputProps={{ style: { height: "12px" } }}
+                type="number"
               />
               <span style={{ color: "red" }}>
                 * Please add quantity in grams.
