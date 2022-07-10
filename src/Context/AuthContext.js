@@ -62,7 +62,8 @@ export  const AuthProvider  = (props)=>{
                 user,
                 error,
                 login,
-                logout
+                logout,
+                setUser
             }
             }
         >

@@ -20,6 +20,11 @@ export const SidebarData = [
 
 export const AdminSidebarData = [
     {
+        onClick: (navigate) => navigate('/profile'),
+        text:'profile',
+        title: "Profile"    
+    },
+    {
         onClick: (navigate) => navigate('/adddish'),
         text:'add',
         title:'Add Dish',

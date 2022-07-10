@@ -32,7 +32,7 @@ export default function RecipeReviewCard() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { user, update } = React.useContext(AuthContext);
+  const { user, update, setUser } = React.useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,8 +46,9 @@ export default function RecipeReviewCard() {
           name: nameRef.current.value,
         }
       );
-
       if (data) {
+        localStorage.setItem('user',JSON.stringify(data.user))
+        setUser(data.user)
         setSuccess(data.message);
         setLoading(false);
         setTimeout(() => {
@@ -77,7 +78,7 @@ export default function RecipeReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {user.name.charAt(0).toUpperCase()}
+              {user.name.charAt(0)}
             </Avatar>
           }
           title={`${user.name.charAt(0).toUpperCase()}${user.name.substring(
