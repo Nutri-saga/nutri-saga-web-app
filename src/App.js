@@ -7,11 +7,9 @@ import Approuter from "./utils/Approuter";
 
 function App() {
   return (
-    <Router>
-        <SideBar>
-          <Approuter />
-        </SideBar>
-    </Router>
+    <SideBar>
+      <Approuter />
+    </SideBar>
   );
 }
 

@@ -22,7 +22,9 @@ import { Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import { DishContext } from "../Context/DishContext";
-import { purple } from '@mui/material/colors';
+import { AuthContext } from "../Context/AuthContext";
+
+import { purple } from "@mui/material/colors";
 
 const pages = ["Home", "About", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -32,6 +34,7 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const { dishes } = useContext(DishContext);
+  const { user, logout } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -151,44 +154,94 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{display:"flex", alignItems:"center"}}>
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Login" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
-          <Box sx={{marginLeft:"20px"}}>
-            <Badge max={10} badgeContent={dishes.length>0 ? dishes.length : '0'} color="error">
-              <CalendarMonthIcon
-                sx={{ cursor: "pointer" }}
-                onClick={() => navigate("/planner")}
-              />
-            </Badge>
-          </Box>
+          <Box sx={{ marginRight: "40px" }}>
+              <Badge
+                max={10}
+                badgeContent={dishes.length > 0 ? dishes.length : "0"}
+                color="error"
+              >
+                <CalendarMonthIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/planner")}
+                />
+              </Badge>
+            </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                {user ? (
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={user.username.toString().toUpperCase().charAt(0)}
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar />
+                  </IconButton>
+                )}
+              </Tooltip>
+              {user ? (
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem key={1} onClick={handleCloseUserMenu}>
+                    <Typography
+                      onClick={() => navigate("/profile")}
+                      textAlign="center"
+                    >
+                      Profile
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem key={2} onClick={handleCloseUserMenu}>
+                    <Typography onClick={logout} textAlign="center">
+                      Logout
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              ) : (
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      onClick={() => navigate("/login")}
+                      textAlign="center"
+                    >
+                      Login
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              )}
+            </Box>
+         
           </Box>
         </Toolbar>
       </Container>
