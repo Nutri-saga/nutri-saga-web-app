@@ -79,7 +79,7 @@ function AdminDashboard() {
               align="center"
             >
               {" "}
-             Items To Shoped : {shop}
+             Items  Shopped : {shop}
             </Typography>
             <hr />
             <div style={{ width: "fit-content", margin: "auto" }}>
