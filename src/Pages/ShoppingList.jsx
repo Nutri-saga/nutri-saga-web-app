@@ -7,6 +7,23 @@ import ShopBag from "../assets/cart.png";
 
 import Typography from "@mui/material/Typography";
 
+import styled from "@emotion/styled";
+
+const DivContainer = styled('div')(()=>({
+  height:"60vh",
+  overflowY:"scroll",
+  '&::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '&::-webkit-scrollbar-track': {
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#1976D2',
+      borderRadius:"5px"
+    }
+}))
+
 export default function ShoppingList() {
   const { dishes } = useContext(DishContext);
   return (
@@ -25,7 +42,7 @@ export default function ShoppingList() {
           </Typography>
         </div>
         <hr />
-        <div style={{ height: "55vh", overFlowY: "scroll" }}>
+        <DivContainer>
           {dishes.length <= 0 ? (
             <div
               style={{
@@ -45,7 +62,7 @@ export default function ShoppingList() {
               ))}
             </div>
           )}
-        </div>
+        </DivContainer>
       </Card>
     </div>
   );

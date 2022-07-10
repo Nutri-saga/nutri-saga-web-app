@@ -5,6 +5,24 @@ import { Box } from "@mui/material";
 
 import { DishContext } from "../Context/DishContext";
 import PlannerCard from "../Components/PlannerCard";
+
+import styled from "@emotion/styled";
+
+const DivContainer = styled('div')(()=>({
+  height:"84vh",
+  overflowY:"scroll",
+  '&::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '&::-webkit-scrollbar-track': {
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'green',
+      borderRadius:"5px"
+    }
+}))
+
 function Planner() {
   const { setDish, dishes } = useContext(DishContext);
   let protein = 0;
@@ -21,14 +39,14 @@ function Planner() {
   console.log(protein)
   return (
     <div style={{display:"flex"}}>
-      <div style={{display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", marginBottom:"10px", flexDirection:"column"}}>
+      <div style={{display:"flex", flexWrap:"wrap", justifyContent:"space-between",  flexDirection:"column"}}>
         <PlannerCard title="Energy" value={energy} color="#ff9800"/>
         <PlannerCard title="Fats"  value={fats} color="#c51162"/>
         <PlannerCard title="Protein" value={protein} color="#673ab7"/>
         <PlannerCard title="Calories" value={calories} color="#2196f3"/>
 
       </div>
-      <div style={{height:"84vh", overflowY:"scroll", minWidth:"66.3vw"}}>
+      <DivContainer>
         <Box
           sx={{
             display: "flex",
@@ -42,7 +60,7 @@ function Planner() {
             </div>
           ))}
         </Box>
-      </div>
+      </DivContainer>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import ShoppingList from "../Pages/ShoppingList";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Login from '../Pages/Login';
 import UpdateDish from "../Pages/UpdateDish";
+import AdminDashboard from "../Pages/AdminDashboard";
 
 function Approuter() {
   return (
@@ -14,11 +15,14 @@ function Approuter() {
       <Route path="/dishes" element={<Dishes />} />
       <Route path="/planner" element={<Planner />} />
       <Route path="/shoppinglist" element={<ShoppingList />} />
+      <Route path="/login" element={<Login/>}/>
+
       <Route element={<ProtectedRoutes />}>
+      <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/adddish" element={<AddDish />} />
         <Route path="/updatedish" element={<UpdateDish />} />
       </Route>
-      <Route path="/login" element={<Login/>}/>
+      
     </Routes>
   );
 }

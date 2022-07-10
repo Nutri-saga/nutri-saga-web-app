@@ -41,7 +41,7 @@ export default React.memo(function ShopList({ val }) {
           <Typography
             sx={{ marginLeft: "20px", textDecoration: "line-through" }}
           >
-            {val.name}
+            {val.name}&nbsp;&nbsp;<span>( {val.servings} )</span>
           </Typography>
         ) : (
           <Typography sx={{ marginLeft: "20px" }}>{val.name}&nbsp;&nbsp;<span>( {val.servings} )</span></Typography>

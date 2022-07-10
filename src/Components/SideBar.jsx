@@ -87,11 +87,18 @@ export default function SideBar(props) {
                   margin: "auto",
                   alignItems: "center",
                   boxShadow: "gray 0px 0px 5px",
-                  padding:"10px"
+                  padding: "10px",
                 }}
               >
                 <VerifiedUserIcon />
-                <Typography sx={{ fontWeight: "600", marginLeft: "5px" }}>
+                <Typography
+                  onClick={() => navigate("/dashboard")}
+                  sx={{
+                    fontWeight: "600",
+                    marginLeft: "5px",
+                    cursor: "pointer",
+                  }}
+                >
                   Admin Dashboard
                 </Typography>
               </div>
