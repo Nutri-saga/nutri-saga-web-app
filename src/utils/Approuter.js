@@ -9,6 +9,7 @@ import Login from '../Pages/Login';
 import UpdateDish from "../Pages/UpdateDish";
 import AdminDashboard from "../Pages/AdminDashboard";
 import UpdateDishByID from "../Pages/UpdateDishByID";
+import Profile from '../Components/Profile';
 
 function Approuter() {
   return (
@@ -23,6 +24,7 @@ function Approuter() {
         <Route path="/adddish" element={<AddDish />} />
         <Route path="/updatedish" element={<UpdateDish />} />
         <Route path="/updatedish/:id" element={<UpdateDishByID/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Route>
       
     </Routes>
