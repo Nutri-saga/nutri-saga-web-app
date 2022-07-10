@@ -252,7 +252,7 @@ export default function AddDishCard() {
                 disabled={loading}
                 fullWidth
               >
-                SUBMIT
+                {loading ? <CircularProgress/> :"Submit"}
               </Button>
             </form>
           </CardContent>

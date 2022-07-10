@@ -35,13 +35,14 @@ export default React.memo(function DishCard({ val }) {
   };
 
   return (
-    <Card sx={{ width: 200 }}>
+    <Card sx={{ width: 240, height:420, boxShadow:"gray 2px 2px 5px" }}>
       <CardMedia
         component="img"
-        width="100%"
-        height="auto"
+        width="auto"
+        height="40%"
         image={val.image_url["url"]}
         alt={val.name}
+        sx={{border:"2px solid green", borderRadius:"5px"}}
       />
       <CardContent>
         <Typography sx={{fontWeight:"600", letterSpacing:"0.05em", color:"#424242"}} align="center" gutterBottom variant="h5" component="div">

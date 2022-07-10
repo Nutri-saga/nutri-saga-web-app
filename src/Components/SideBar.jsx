@@ -16,7 +16,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import UpdateIcon from '@mui/icons-material/Update';
+import UpdateIcon from "@mui/icons-material/Update";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
@@ -30,7 +30,7 @@ function Icons({ type }) {
       {type === "menu" && <MenuBookIcon sx={{ color: "#1faa00" }} />}
       {type === "planner" && <CalendarMonthIcon sx={{ color: "#1faa00" }} />}
       {type === "shop" && <ShoppingBagIcon sx={{ color: "#1faa00" }} />}
-      {type === "update" && <UpdateIcon sx={{ color: "#1faa00" }}/>}
+      {type === "update" && <UpdateIcon sx={{ color: "#1faa00" }} />}
     </>
   );
 }
@@ -80,13 +80,18 @@ export default function SideBar(props) {
             </List>
           ) : (
             <List>
-              <div style={{display:"flex", width:"fit-content", margin:"auto"}}>
-                {" "}
+              <div
+                style={{
+                  display: "flex",
+                  width: "fit-content",
+                  margin: "auto",
+                  alignItems: "center",
+                  boxShadow: "gray 0px 0px 5px",
+                  padding:"10px"
+                }}
+              >
                 <VerifiedUserIcon />
-                <Typography
-                  align="center"
-                  sx={{ fontWeight: "600", marginBottom: "20px", marginLeft:"5px" }}
-                >
+                <Typography sx={{ fontWeight: "600", marginLeft: "5px" }}>
                   Admin Dashboard
                 </Typography>
               </div>

@@ -11,7 +11,9 @@ export default function ShoppingList() {
   const { dishes } = useContext(DishContext);
   return (
     <div>
-      <Card sx={{ width: "80%", margin: "auto" }}>
+      <Card
+        sx={{ width: "80%", margin: "auto", boxShadow: "gray 2px 5px 15px" }}
+      >
         <div style={{ width: "fit-content", margin: "auto" }}>
           <img style={{ width: "100px" }} src={ShopBag} />
           <Typography
@@ -25,7 +27,17 @@ export default function ShoppingList() {
         <hr />
         <div style={{ height: "55vh", overFlowY: "scroll" }}>
           {dishes.length <= 0 ? (
-            <div style={{width:"fit-content", margin:"auto", fontSize:"20px", fontWeight:"600", marginTop:"40px"}}>Nothing to shop ☹️</div>
+            <div
+              style={{
+                width: "fit-content",
+                margin: "auto",
+                fontSize: "20px",
+                fontWeight: "600",
+                marginTop: "40px",
+              }}
+            >
+              Nothing to shop ☹️
+            </div>
           ) : (
             <div>
               {dishes.map((val, indx) => (

@@ -9,28 +9,27 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
 
-const DishCard = lazy(() => import("../Components/DishCard"));
+const UpdateDishCards = lazy(() => import("../Components/UpdateDishCards"));
 
 const DivContainer = styled('div')(()=>({
-  height:"74vh",
-  overflowY:"scroll",
-  '&::-webkit-scrollbar': {
-      width: '0.4em'
-    },
-    '&::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'green',
-      borderRadius:"5px"
-    }
+    height:"74vh",
+    overflowY:"scroll",
+    '&::-webkit-scrollbar': {
+        width: '0.4em'
+      },
+      '&::-webkit-scrollbar-track': {
+        '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+      },
+      '&::-webkit-scrollbar-thumb': {
+        backgroundColor: 'green',
+        borderRadius:"5px"
+      }
 }))
 
 function Dishes() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
-
   const getData = async () => {
     const { data, err } = await getDishes();
     if (data) {
@@ -86,12 +85,12 @@ function Dishes() {
             {searchData!=""
               ? searchData.map((val, indx) => (
                   <Box key={indx} sx={{ margin: "10px" }}>
-                    <DishCard val={val} />
+                    <UpdateDishCards val={val} />
                   </Box>
                 ))
               : data.map((val, indx) => (
                   <Box key={indx} sx={{ margin: "10px" }}>
-                    <DishCard val={val} />
+                    <UpdateDishCards val={val} />
                   </Box>
                 ))}
           </Box>
