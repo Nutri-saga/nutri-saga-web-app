@@ -7,6 +7,7 @@ import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
+import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 const UpdateDishCards = lazy(() => import("../Components/UpdateDishCards"));
@@ -21,7 +22,7 @@ const DivContainer = styled('div')(()=>({
         '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: 'green',
+        backgroundColor: '#1faa00',
         borderRadius:"5px"
       }
 }))
@@ -39,6 +40,7 @@ function Dishes() {
     }
   };
   useEffect(() => {
+    document.title= "Update Dish"
     getData();
   }, []);
 
@@ -54,7 +56,24 @@ function Dishes() {
   }, [search]);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div style={{ width: "fit-content", margin: "auto"}}>
+           <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#1faa00",
+            fontWeight: "600",
+            padding: "0px 10px 0px 10px",
+            letterSpacing: "0.05em",
+          }}
+        >
+          Update/Delete Dish
+        </Typography>
         <TextField
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -64,15 +83,24 @@ function Dishes() {
             startAdornment: (
               <InputAdornment>
                 <IconButton>
-                  <SearchIcon sx={{color:"green"}} />
+                  <SearchIcon sx={{ color: "#1faa00" }} />
                 </IconButton>
               </InputAdornment>
             ),
-            style: { height: "40px", color:"green", },
+            style: {
+              height: "40px",
+              width: "300px",
+              borderRadius: "20px",
+              marginRight: "10px",
+              color: "#1faa00",
+              boxShadow: "#1faa00 3px 3px 8px ",
+              color:"#1faa00",
+              fontWeight:"600"
+            },
           }}
         />
       </div>
-      <hr style={{boxShadow:"green 1px 1px 5px", borderColor:"green"}}/>
+      <hr style={{boxShadow:"#1faa00 1px 1px 5px", borderColor:"#1faa00"}}/>
       <DivContainer >
         {data ? (
           <Box

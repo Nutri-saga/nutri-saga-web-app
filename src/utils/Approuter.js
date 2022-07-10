@@ -8,6 +8,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Login from '../Pages/Login';
 import UpdateDish from "../Pages/UpdateDish";
 import AdminDashboard from "../Pages/AdminDashboard";
+import UpdateDishByID from "../Pages/UpdateDishByID";
 
 function Approuter() {
   return (
@@ -21,6 +22,7 @@ function Approuter() {
       <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/adddish" element={<AddDish />} />
         <Route path="/updatedish" element={<UpdateDish />} />
+        <Route path="/updatedish/:id" element={<UpdateDishByID/>}/>
       </Route>
       
     </Routes>

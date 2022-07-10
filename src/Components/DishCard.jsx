@@ -4,8 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardActions } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
 
 import { DishContext } from "../Context/DishContext";
 
@@ -35,7 +35,7 @@ export default React.memo(function DishCard({ val }) {
   };
 
   return (
-    <Card sx={{ width: 240, height:420, boxShadow:"gray 2px 2px 5px" }}>
+    <Card className="dish-card" sx={{ width: 240, height:420, border:"1px solid #1faa00", boxShadow:"#1faa00 2px 2px 8px" }}>
       <CardMedia
         component="img"
         width="auto"

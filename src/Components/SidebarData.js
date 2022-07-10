@@ -27,7 +27,7 @@ export const AdminSidebarData = [
     {
         onClick: (navigate) => navigate('/updatedish'),
         text:'update',
-        title:'Update Dish',
+        title:'Update/Delete',
     },
     {
         onClick: (navigate) => navigate('/dishes'),

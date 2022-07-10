@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import DishCard from "../Components/DishCard";
 
 import { Box } from "@mui/material";
@@ -25,6 +25,9 @@ const DivContainer = styled('div')(()=>({
 
 function Planner() {
   const { setDish, dishes } = useContext(DishContext);
+  useEffect(()=>{
+    document.title = `Weekly Planner (${dishes.length})`
+  },[])
   let protein = 0;
   let energy =0 ;
   let fats = 0;
@@ -52,6 +55,7 @@ function Planner() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-evenly",
+            width:"65vw",
           }}
         >
           {dishes.map((val, indx) => (

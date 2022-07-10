@@ -5,8 +5,8 @@ import { Button, CardActionArea, CircularProgress, TextField, Typography } from 
 import { addDish, getDishes } from "../Context/ComponentActions";
 import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
-import DishList from "./DishList";
 import styled from "@emotion/styled";
+import DishList from "./DishList";
 
 const StyleDiv = styled("div")(() => ({
   height: "75vh",
@@ -24,7 +24,6 @@ const StyleDiv = styled("div")(() => ({
 }));
 
 const DishLists = React.memo(function DishLists({ data }) {
-  console.log("render");
   return (
     <Card
       sx={{
