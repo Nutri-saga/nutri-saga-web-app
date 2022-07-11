@@ -23,14 +23,14 @@ function AdminDashboard() {
 
   async function getData() {
     const { data } = await getDishes();
-    setDish(data.length);
-    setCart(dishes.length);
+    setDish(data?.length);
+    setCart(dishes?.length);
   }
 
   useEffect(() => {
     getData();
     const ans = getShop();
-    setShop(parseInt(ans.length));
+    setShop(parseInt(ans?.length)||0);
 
   }, []);
 

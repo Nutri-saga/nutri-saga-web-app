@@ -168,7 +168,7 @@ const NavBar = () => {
           <Box sx={{ marginRight: "40px" }}>
               <Badge
                 max={10}
-                badgeContent={dishes.length > 0 ? dishes.length : "0"}
+                badgeContent={dishes?.length > 0 ? dishes.length : "0"}
                 color="error"
               >
                 <CalendarMonthIcon

@@ -26,14 +26,14 @@ const DivContainer = styled('div')(()=>({
 function Planner() {
   const { setDish, dishes } = useContext(DishContext);
   useEffect(()=>{
-    document.title = `Weekly Planner (${dishes.length})`
+    document.title = `Weekly Planner (${dishes?.length})`
   },[])
   let protein = 0;
   let energy =0 ;
   let fats = 0;
   let calories = 0;
 
-  for(let i=0; i<dishes.length; i++){
+  for(let i=0; i<dishes?.length; i++){
     protein += parseFloat(dishes[i].protein);
     energy += parseFloat(dishes[i].energy);
     fats += parseFloat(dishes[i].fats);
@@ -58,7 +58,7 @@ function Planner() {
             width:"65vw",
           }}
         >
-          {dishes.map((val, indx) => (
+          {dishes?.map((val, indx) => (
             <div key={indx} style={{ margin: "10px" }}>
               <DishCard val={val} />
             </div>

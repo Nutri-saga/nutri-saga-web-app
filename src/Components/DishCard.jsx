@@ -15,7 +15,7 @@ export default React.memo(function DishCard({ val }) {
   const [cart, setCart] = useState(false);
 
   useEffect(() => {
-    dishes.map((dish) => {
+    dishes?.map((dish) => {
       if (dish._id === val._id) {
         setCart(true);
         getDish();
