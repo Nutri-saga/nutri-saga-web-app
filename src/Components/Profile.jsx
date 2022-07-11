@@ -1,4 +1,4 @@
-import  React,{useState} from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import { red } from "@mui/material/colors";
 import { Button, CircularProgress, TextField } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 import axios from "axios";
 
@@ -47,8 +48,8 @@ export default function RecipeReviewCard() {
         }
       );
       if (data) {
-        localStorage.setItem('user',JSON.stringify(data.user))
-        setUser(data.user)
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setUser(data.user);
         setSuccess(data.message);
         setLoading(false);
         setTimeout(() => {
@@ -88,9 +89,14 @@ export default function RecipeReviewCard() {
         />
 
         <CardContent sx={{ width: "400px", margin: "auto" }}>
-        {success!=='' && <Alert severity="success">{success}</Alert>}
-        {error!=='' &&<Alert severity="error">{error}</Alert>}
-        <br/>
+          {success !== "" && <Alert severity="success">{success}</Alert>}
+          {error !== "" && <Alert severity="error">{error}</Alert>}
+          <div style={{width:"fit-content", margin:"auto"}}>
+            <Avatar sx={{ background:"green", height:"120px", width:"120px" }} aria-label="recipe">
+              <AssignmentIndIcon sx={{fontSize:"100px"}}/>
+            </Avatar>
+          </div>
+          <br />
           <form onSubmit={handleSubmit}>
             <TextField
               inputProps={{ style: { height: "10px" } }}
@@ -124,7 +130,7 @@ export default function RecipeReviewCard() {
               variant="contained"
               type="submit"
             >
-              {loading ?<CircularProgress/> :"Update"}
+              {loading ? <CircularProgress /> : "Update"}
             </Button>
           </form>
         </CardContent>

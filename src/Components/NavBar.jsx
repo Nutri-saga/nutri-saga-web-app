@@ -19,7 +19,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Badge } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { DishContext } from "../Context/DishContext";
 import { AuthContext } from "../Context/AuthContext";
@@ -52,6 +52,18 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleButton =(page)=>{
+    handleCloseNavMenu();
+    if(page==="Home"){
+      navigate(`/`);
+    }
+    if(page==="About"){
+      navigate('/about')
+    }
+    if(page==="Blog"){
+      navigate('/blogs')
+    }
+  }
 
   return (
     <AppBar position="static">
@@ -61,7 +73,6 @@ const NavBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -72,7 +83,7 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            <img width="180" src={logo} />
+            <Link to="/"><img width="180" src={logo} /></Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -127,13 +138,13 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            <img width="180" src={logo} />
+            <img width="200" src={logo} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={()=>handleButton(page)}
                 sx={{
                   my: 2,
                   color: "white",

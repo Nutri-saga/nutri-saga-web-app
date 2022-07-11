@@ -10,14 +10,22 @@ import UpdateDish from "../Pages/UpdateDish";
 import AdminDashboard from "../Pages/AdminDashboard";
 import UpdateDishByID from "../Pages/UpdateDishByID";
 import Profile from '../Components/Profile';
+import Home from '../Pages/Home';
+import About from "../Pages/About";
+import Blogs from "../Pages/Blogs";
 
 function Approuter() {
   return (
     <Routes>
+      <Route path='/' element={<Home/>}/>
       <Route path="/dishes" element={<Dishes />} />
       <Route path="/planner" element={<Planner />} />
       <Route path="/shoppinglist" element={<ShoppingList />} />
       <Route path="/login" element={<Login/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/blogs' element={<Blogs/>}/>
+      <Route path='/*' element={<Login/>}/>
+      
 
       <Route element={<ProtectedRoutes />}>
       <Route path="/dashboard" element={<AdminDashboard />} />
