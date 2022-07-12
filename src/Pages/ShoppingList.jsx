@@ -27,7 +27,7 @@ const DivContainer = styled('div')(()=>({
 export default function ShoppingList() {
   const { dishes } = useContext(DishContext);
   useEffect(()=>{
-    document.title=`Shooping Bag (${dishes.length})`
+    document.title=`Shopping Bag (${dishes.length})`
   },[])
   return (
     <div>

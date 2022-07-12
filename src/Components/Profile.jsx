@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -35,6 +35,9 @@ export default function RecipeReviewCard() {
 
   const { user, update, setUser } = React.useContext(AuthContext);
 
+  useEffect(()=>{
+    document.title = "Profile"
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

@@ -12,7 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import logo from "../assets/Logo.png";
+import logo from "../assets/nutrisaga.png";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -52,39 +52,45 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const handleButton =(page)=>{
+  const handleButton = (page) => {
     handleCloseNavMenu();
-    if(page==="Home"){
+    if (page === "Home") {
       navigate(`/`);
     }
-    if(page==="About"){
-      navigate('/about')
+    if (page === "About") {
+      navigate("/about");
     }
-    if(page==="Blog"){
-      navigate('/blogs')
+    if (page === "Blog") {
+      navigate("/blogs");
     }
-  }
+  };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl" sx={{ background: "#1faa00" }}>
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <Link to="/"><img width="180" src={logo} /></Link>
-          </Typography>
+          <div style={{display:"flex", alignItems:"center", marginLeft:"-8px"}}>
+            <img src={logo} width="70" />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 4,
+                fontFamily: "sans-serif",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                fontSize: "16px",
+                textShadow: "3px 3px gray",
+                color:"whitesmoke"
+
+              }}
+            >
+              Nutri Saga{" "}
+            </Typography>
+          </div>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -144,12 +150,13 @@ const NavBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={()=>handleButton(page)}
+                onClick={() => handleButton(page)}
                 sx={{
                   my: 2,
                   color: "white",
                   display: "block",
                   display: "flex",
+                  fontWeight:"500"
                 }}
               >
                 <span style={{ marginRight: "3px" }}>
@@ -166,17 +173,17 @@ const NavBar = () => {
             ))}
           </Box>
           <Box sx={{ marginRight: "40px" }}>
-              <Badge
-                max={10}
-                badgeContent={dishes.length > 0 ? dishes.length : "0"}
-                color="error"
-              >
-                <CalendarMonthIcon
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => navigate("/planner")}
-                />
-              </Badge>
-            </Box>
+            <Badge
+              max={10}
+              badgeContent={dishes.length > 0 ? dishes.length : "0"}
+              color="error"
+            >
+              <CalendarMonthIcon
+                sx={{ cursor: "pointer" }}
+                onClick={() => navigate("/planner")}
+              />
+            </Badge>
+          </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -252,7 +259,6 @@ const NavBar = () => {
                 </Menu>
               )}
             </Box>
-         
           </Box>
         </Toolbar>
       </Container>
