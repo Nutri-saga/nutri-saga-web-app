@@ -13,6 +13,7 @@ import Profile from '../Components/Profile';
 import Home from '../Pages/Home';
 import About from "../Pages/About";
 import Blogs from "../Pages/Blogs";
+import Calculator from "../Pages/Calculator";
 
 function Approuter() {
   return (
@@ -24,6 +25,7 @@ function Approuter() {
       <Route path="/login" element={<Login/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/blogs' element={<Blogs/>}/>
+      <Route path='/calculator' element={<Calculator/>}/>
       <Route path='/*' element={<Login/>}/>
       
 

@@ -173,17 +173,17 @@ const NavBar = () => {
             ))}
           </Box>
           <Box sx={{ marginRight: "40px" }}>
-            <Badge
-              max={10}
-              badgeContent={dishes.length > 0 ? dishes.length : "0"}
-              color="error"
-            >
-              <CalendarMonthIcon
-                sx={{ cursor: "pointer" }}
-                onClick={() => navigate("/planner")}
-              />
-            </Badge>
-          </Box>
+              <Badge
+                max={10}
+                badgeContent={dishes?.length > 0 ? dishes.length : "0"}
+                color="error"
+              >
+                <CalendarMonthIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/planner")}
+                />
+              </Badge>
+            </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

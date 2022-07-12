@@ -15,7 +15,7 @@ export default React.memo(function DishCard({ val }) {
   const [cart, setCart] = useState(false);
 
   useEffect(() => {
-    dishes.map((dish) => {
+    dishes?.map((dish) => {
       if (dish._id === val._id) {
         setCart(true);
         getDish();
@@ -35,7 +35,7 @@ export default React.memo(function DishCard({ val }) {
   };
 
   return (
-    <Card className="dish-card" sx={{ width: 240, height:420, border:"1px solid #1faa00", boxShadow:"#1faa00 2px 2px 8px" }}>
+    <Card className="dish-card" sx={{ width: 240, height:420, boxShadow:"gray 2px 5px 15px"}}>
       <CardMedia
         component="img"
         width="auto"

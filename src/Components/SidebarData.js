@@ -15,6 +15,11 @@ export const SidebarData = [
         text:'shop',
         title: "Shopping List"    
     },
+    {
+        onClick: (navigate) => navigate('/calculator'),
+        text:'calculator',
+        title: "Nutri Calculator"    
+    },
 ]
 
 
@@ -48,5 +53,10 @@ export const AdminSidebarData = [
         onClick: (navigate) => navigate('/shoppinglist'),
         text:'shop',
         title: "Shopping List"    
+    },
+    {
+        onClick: (navigate) => navigate('/calculator'),
+        text:'calculator',
+        title: "Nutri Calculator"    
     },
 ]

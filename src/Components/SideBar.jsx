@@ -18,6 +18,7 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import UpdateIcon from "@mui/icons-material/Update";
 import PersonIcon from '@mui/icons-material/Person';
+import CalculateIcon from '@mui/icons-material/Calculate';
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
@@ -34,6 +35,7 @@ function Icons({ type }) {
       {type === "shop" && <ShoppingBagIcon sx={{ color: "#1faa00" }} />}
       {type === "update" && <UpdateIcon sx={{ color: "#1faa00" }} />}
       {type === "profile" && <PersonIcon sx={{ color: "#1faa00" }} />}
+      {type === "calculator" && <CalculateIcon sx={{ color: "#1faa00" }} />}
     </>
   );
 }

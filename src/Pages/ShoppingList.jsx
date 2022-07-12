@@ -27,7 +27,7 @@ const DivContainer = styled('div')(()=>({
 export default function ShoppingList() {
   const { dishes } = useContext(DishContext);
   useEffect(()=>{
-    document.title=`Shopping Bag (${dishes.length})`
+    document.title=`Shopping Bag (${dishes?.length || 'Nothing to shop'})`
   },[])
   return (
     <div>
@@ -46,24 +46,24 @@ export default function ShoppingList() {
         </div>
         <hr />
         <DivContainer>
-          {dishes.length <= 0 ? (
-            <div
-              style={{
-                width: "fit-content",
-                margin: "auto",
-                fontSize: "20px",
-                fontWeight: "600",
-                marginTop: "40px",
-              }}
-            >
-              Nothing to shop ☹️
-            </div>
-          ) : (
+          {dishes?.length > 0 ? (
             <div>
-              {dishes.map((val, indx) => (
-                <ShopList key={indx} val={val} />
-              ))}
-            </div>
+            {dishes?.map((val, indx) => (
+              <ShopList key={indx} val={val} />
+            ))}
+          </div>
+          ) : (
+            <div
+            style={{
+              width: "fit-content",
+              margin: "auto",
+              fontSize: "20px",
+              fontWeight: "600",
+              marginTop: "40px",
+            }}
+          >
+            Nothing to shop ☹️
+          </div>
           )}
         </DivContainer>
       </Card>
