@@ -17,12 +17,11 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import UpdateIcon from "@mui/icons-material/Update";
-import PersonIcon from '@mui/icons-material/Person';
-import CalculateIcon from '@mui/icons-material/Calculate';
+import PersonIcon from "@mui/icons-material/Person";
+import CalculateIcon from "@mui/icons-material/Calculate";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-
 
 const drawerWidth = 240;
 
@@ -42,8 +41,14 @@ function Icons({ type }) {
 
 export default function SideBar(props) {
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(true);
 
   const { user } = useContext(AuthContext);
+
+  const handleMenu = (value) => {
+    setOpen(!value);
+    console.log(value);
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -52,78 +57,80 @@ export default function SideBar(props) {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Navbar />
+        <Navbar handleMenu={handleMenu} />
       </AppBar>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
+      {open && (
+        <Drawer
+          variant="permanent"
+          sx={{
             width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        color="primary"
-      >
-        <Toolbar />
-        <Box sx={{ overflow: "auto", marginTop: "20px" }}>
-          {!user ? (
-            <List>
-              {SidebarData.map((item, index) => (
-                <ListItem key={index}>
-                  <ListItemButton onClick={() => item.onClick(navigate)}>
-                    <ListItemIcon>
-                      <Icons type={item.text} />
-                    </ListItemIcon>
-                    <Typography sx={{ fontWeight: "600", color: "#1faa00" }}>
-                      {item?.title}
-                    </Typography>
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <List>
-              <div
-                style={{
-                  display: "flex",
-                  width: "fit-content",
-                  margin: "auto",
-                  alignItems: "center",
-                  boxShadow: "gray 0px 0px 5px",
-                  padding: "10px",
-                }}
-              >
-                <VerifiedUserIcon />
-                <Typography
-                  onClick={() => navigate("/dashboard")}
-                  sx={{
-                    fontWeight: "600",
-                    marginLeft: "5px",
-                    cursor: "pointer",
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          color="primary"
+        >
+          <Toolbar />
+          <Box sx={{ overflow: "auto", marginTop: "20px" }}>
+            {!user ? (
+              <List>
+                {SidebarData.map((item, index) => (
+                  <ListItem key={index}>
+                    <ListItemButton onClick={() => item.onClick(navigate)}>
+                      <ListItemIcon>
+                        <Icons type={item.text} />
+                      </ListItemIcon>
+                      <Typography sx={{ fontWeight: "600", color: "#1faa00" }}>
+                        {item?.title}
+                      </Typography>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <List>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "fit-content",
+                    margin: "auto",
+                    alignItems: "center",
+                    boxShadow: "gray 0px 0px 5px",
+                    padding: "10px",
                   }}
                 >
-                  Admin Dashboard
-                </Typography>
-              </div>
+                  <VerifiedUserIcon />
+                  <Typography
+                    onClick={() => navigate("/dashboard")}
+                    sx={{
+                      fontWeight: "600",
+                      marginLeft: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Admin Dashboard
+                  </Typography>
+                </div>
 
-              {AdminSidebarData.map((item, index) => (
-                <ListItem key={index}>
-                  <ListItemButton onClick={() => item.onClick(navigate)}>
-                    <ListItemIcon>
-                      <Icons type={item.text} />
-                    </ListItemIcon>
-                    <Typography sx={{ fontWeight: "600", color: "#1faa00" }}>
-                      {item?.title}
-                    </Typography>
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </Box>
-      </Drawer>
+                {AdminSidebarData.map((item, index) => (
+                  <ListItem key={index}>
+                    <ListItemButton onClick={() => item.onClick(navigate)}>
+                      <ListItemIcon>
+                        <Icons type={item.text} />
+                      </ListItemIcon>
+                      <Typography sx={{ fontWeight: "600", color: "#1faa00" }}>
+                        {item?.title}
+                      </Typography>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </Box>
+        </Drawer>
+      )}
       <Box component="main" sx={{ padding: "90px 8px 8px 8px", width: "100%" }}>
         {props.children}
       </Box>

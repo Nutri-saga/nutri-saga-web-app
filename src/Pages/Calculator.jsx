@@ -26,14 +26,7 @@ function Calculator() {
     document.title = "Daily Nutri Calculator";
   },[])
 
-  const handleReset = () => {
-    alert("hello");
-    setDays(5);
-    setEnergy("");
-    setFats(0);
-    setProtein(0);
-    setCalories(0);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true)
@@ -54,7 +47,7 @@ function Calculator() {
 
   return (
     <Box>
-      <form onSubmit={handleSubmit} onReset={handleReset}>
+      <form onSubmit={handleSubmit} >
         <Card
           sx={{
             width: "400px",

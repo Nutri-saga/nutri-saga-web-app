@@ -17,6 +17,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Badge } from "@mui/material";
 
 import { useNavigate, Link } from "react-router-dom";
@@ -29,9 +30,10 @@ import { purple } from "@mui/material/colors";
 const pages = ["Home", "About", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const NavBar = () => {
+const NavBar = ({handleMenu}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = React.useState(true);
 
   const { dishes } = useContext(DishContext);
   const { user, logout } = useContext(AuthContext);
@@ -65,11 +67,18 @@ const NavBar = () => {
     }
   };
 
+  const handleClick = ()=>{
+    setOpen(prev => !prev)
+    handleMenu(open);
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl" sx={{ background: "#1faa00" }}>
         <Toolbar disableGutters>
           <div style={{display:"flex", alignItems:"center", marginLeft:"-8px"}}>
+            {!open && <MenuIcon sx={{cursor:"pointer", fontSize:"40px", marginRight:"30px"}} onClick={handleClick}/>}
+            {open && <MenuOpenIcon sx={{cursor:"pointer",  fontSize:"40px", marginRight:"30px"}} onClick={handleClick}/>}
             <img src={logo} width="70" />
             <Typography
               variant="h6"
