@@ -17,7 +17,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { Badge } from "@mui/material";
 
 import { useNavigate, Link } from "react-router-dom";
@@ -27,10 +27,10 @@ import { AuthContext } from "../Context/AuthContext";
 
 import { purple } from "@mui/material/colors";
 
-const pages = ["Home", "About", "Blog"];
+const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const NavBar = ({handleMenu}) => {
+const NavBar = ({ handleMenu }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [open, setOpen] = React.useState(true);
@@ -67,38 +67,52 @@ const NavBar = ({handleMenu}) => {
     }
   };
 
-  const handleClick = ()=>{
-    setOpen(prev => !prev)
+  const handleClick = () => {
+    setOpen((prev) => !prev);
     handleMenu(open);
-  }
+  };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl" sx={{ background: "#1faa00" }}>
         <Toolbar disableGutters>
-          <div style={{display:"flex", alignItems:"center", marginLeft:"-8px"}}>
-            {!open && <MenuIcon sx={{cursor:"pointer", fontSize:"40px", marginRight:"30px"}} onClick={handleClick}/>}
-            {open && <MenuOpenIcon sx={{cursor:"pointer",  fontSize:"40px", marginRight:"30px"}} onClick={handleClick}/>}
-            <img src={logo} width="70" />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                mr: 4,
-                fontFamily: "sans-serif",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-                textTransform: "uppercase",
-                fontSize: "16px",
-                textShadow: "3px 3px gray",
-                color:"whitesmoke"
-
-              }}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "-8px",
+            }}
+          >
+            <Button
+              sx={{ color: "white", marginRight: "50px" }}
+              onClick={handleClick}
             >
-              Nutri Saga{" "}
-            </Typography>
+              <MenuIcon sx={{ fontSize: "40px" }} />
+            </Button>
+
+            <Link style={{textDecoration:"none"}} to="/">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img src={logo} width="70" />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  sx={{
+                    mr: 4,
+                    fontFamily: "sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    textDecoration: "none",
+                    textTransform: "uppercase",
+                    fontSize: "16px",
+                    textShadow: "3px 3px gray",
+                    color: "whitesmoke",
+                  }}
+                >
+                  Nutri Saga{" "}
+                </Typography>
+              </div>
+            </Link>
           </div>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -165,7 +179,7 @@ const NavBar = ({handleMenu}) => {
                   color: "white",
                   display: "block",
                   display: "flex",
-                  fontWeight:"500"
+                  fontWeight: "500",
                 }}
               >
                 <span style={{ marginRight: "3px" }}>
@@ -182,17 +196,17 @@ const NavBar = ({handleMenu}) => {
             ))}
           </Box>
           <Box sx={{ marginRight: "40px" }}>
-              <Badge
-                max={10}
-                badgeContent={dishes?.length > 0 ? dishes.length : "0"}
-                color="error"
-              >
-                <CalendarMonthIcon
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => navigate("/planner")}
-                />
-              </Badge>
-            </Box>
+            <Badge
+              max={10}
+              badgeContent={dishes?.length > 0 ? dishes.length : "0"}
+              color="error"
+            >
+              <CalendarMonthIcon
+                sx={{ cursor: "pointer" }}
+                onClick={() => navigate("/planner")}
+              />
+            </Badge>
+          </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

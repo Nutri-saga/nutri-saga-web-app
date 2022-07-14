@@ -2,8 +2,10 @@ import React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { Box, Container } from "@mui/system";
+import {useNavigate} from 'react-router-dom';
 
 function AboutCard() {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -20,7 +22,9 @@ function AboutCard() {
           width: "fit-content",
           margin: "auto",
           alignItems: "center",
+          cursor:"pointer"
         }}
+        onClick={()=>navigate('/about')}
       >
         <InfoIcon />
         <Typography align="center" sx={{ fontWeight: "600" }}>
