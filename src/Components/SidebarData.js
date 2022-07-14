@@ -1,6 +1,11 @@
 
 export const SidebarData = [
     {
+        onClick: (navigate) => navigate('/'),
+        text: 'home',
+        title: "Home"  
+    },
+    {
         onClick: (navigate) => navigate('/dishes'),
         text: 'menu',
         title: "Dish Book"  
@@ -20,10 +25,20 @@ export const SidebarData = [
         text:'calculator',
         title: "Nutri Calculator"    
     },
+    {
+        onClick: (navigate) => navigate('/about'),
+        text:'about',
+        title: "About Us"    
+    }
 ]
 
 
 export const AdminSidebarData = [
+    {
+        onClick: (navigate) => navigate('/'),
+        text: 'home',
+        title: "Home"  
+    },
     {
         onClick: (navigate) => navigate('/profile'),
         text:'profile',
@@ -58,5 +73,5 @@ export const AdminSidebarData = [
         onClick: (navigate) => navigate('/calculator'),
         text:'calculator',
         title: "Nutri Calculator"    
-    },
+    }
 ]

@@ -19,6 +19,8 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import UpdateIcon from "@mui/icons-material/Update";
 import PersonIcon from "@mui/icons-material/Person";
 import CalculateIcon from "@mui/icons-material/Calculate";
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
@@ -35,6 +37,8 @@ function Icons({ type }) {
       {type === "update" && <UpdateIcon sx={{ color: "#1faa00" }} />}
       {type === "profile" && <PersonIcon sx={{ color: "#1faa00" }} />}
       {type === "calculator" && <CalculateIcon sx={{ color: "#1faa00" }} />}
+      {type === "home" && <HomeIcon sx={{ color: "#1faa00" }} />}
+      {type === "about" && <InfoIcon sx={{ color: "#1faa00" }} />}
     </>
   );
 }

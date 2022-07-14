@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-
 import { DishContext } from "../Context/DishContext";
 
 export default React.memo(function DishCard({ val }) {
@@ -35,17 +34,31 @@ export default React.memo(function DishCard({ val }) {
   };
 
   return (
-    <Card className="dish-card" sx={{ width: 240, height:420, boxShadow:"gray 2px 5px 15px"}}>
+    <Card
+      className="dish-card"
+      sx={{ width: 240, height: 540, boxShadow: "gray 2px 5px 15px" }}
+    >
       <CardMedia
         component="img"
         width="auto"
         height="40%"
         image={val.image_url["url"]}
         alt={val.name}
-        sx={{border:"2px solid green", borderRadius:"5px"}}
+        sx={{ border: "2px solid green", borderRadius: "5px" }}
       />
       <CardContent>
-        <Typography sx={{fontWeight:"600", letterSpacing:"0.05em", color:"#424242"}} align="center" gutterBottom variant="h5" component="div">
+        <Typography
+          sx={{
+            fontWeight: "600",
+            letterSpacing: "0.05em",
+            height: "100px",
+            color: "#424242",
+          }}
+          align="center"
+          gutterBottom
+          variant="h5"
+          component="div"
+        >
           {val.name}
         </Typography>
         <Typography align="left" gutterBottom component="div">
@@ -69,12 +82,24 @@ export default React.memo(function DishCard({ val }) {
           {`: ${val.calories}g`}
         </Typography>
 
-        <div style={{ marginTop:"10px"}}>
+        <div style={{ marginTop: "10px" }}>
           {" "}
           {val["status"] == "remove" || cart ? (
-            <Button variant="contained" color="error" onClick={handleRemove}>Remove <CalendarMonthIcon sx={{marginTop:"-5px", marginLeft:"3px"}} fontSize="small"/></Button>
+            <Button variant="contained" color="error" onClick={handleRemove}>
+              Remove{" "}
+              <CalendarMonthIcon
+                sx={{ marginTop: "-5px", marginLeft: "3px" }}
+                fontSize="small"
+              />
+            </Button>
           ) : (
-            <Button variant="contained" color="success" onClick={handleAdd}>Add <CalendarMonthIcon sx={{marginTop:"-5px", marginLeft:"3px"}} fontSize="small"/></Button>
+            <Button variant="contained" color="success" onClick={handleAdd}>
+              Add{" "}
+              <CalendarMonthIcon
+                sx={{ marginTop: "-5px", marginLeft: "3px" }}
+                fontSize="small"
+              />
+            </Button>
           )}
         </div>
       </CardContent>
