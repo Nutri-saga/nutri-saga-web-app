@@ -11,6 +11,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
+import { useNavigate } from "react-router-dom";
 
 function Calculator() {
   const [days, setDays] = useState(5);
@@ -26,6 +27,7 @@ function Calculator() {
     document.title = "Daily Nutri Calculator";
   },[])
 
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ function Calculator() {
     localStorage.setItem("calculator", JSON.stringify(obj));
 
     setCal("Your daily nutrition is set successfully...");
+    navigate('/dishes');
     setTimeout(()=>{
         setCal('')
         setLoading(false)

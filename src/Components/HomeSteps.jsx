@@ -14,6 +14,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Card, Typography } from "@mui/material";
+import {useNavigate} from 'react-router-dom';
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -172,9 +173,11 @@ ColorlibStepIcon.propTypes = {
   icon: PropTypes.node,
 };
 const steps = ["Calculate Daily Nutrition", "Explore Dish List", "Shopping"];
+const navigation = ['calculator', 'dishes', 'planner'];
 
 export default function CustomizedSteppers() {
   const [activeState, setActiveState] = React.useState(0);
+  const navigate = useNavigate();
   React.useEffect(() => {
     if (localStorage.getItem("calculator")) {
       setActiveState(1);
@@ -206,9 +209,9 @@ export default function CustomizedSteppers() {
           activeStep={activeState}
           connector={<ColorlibConnector />}
         >
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel StepIconComponent={ColorlibStepIcon}>
+          {steps.map((label, index) => (
+            <Step sx={{cursor:"pointer"}} key={label}>
+              <StepLabel  onClick={()=>navigate(navigation[index])} StepIconComponent={ColorlibStepIcon}>
                 {label}
               </StepLabel>
             </Step>
