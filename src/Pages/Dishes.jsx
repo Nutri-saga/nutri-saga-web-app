@@ -102,7 +102,8 @@ function Dishes() {
       </div>
       <hr style={{ boxShadow: "#1faa00 1px 1px 5px", borderColor: "#1faa00" }} />
       <DivContainer>
-        {data ? (
+        {console.log(data)}
+        {data.length>0 ? (
           <Box
             sx={{
               display: "flex",
