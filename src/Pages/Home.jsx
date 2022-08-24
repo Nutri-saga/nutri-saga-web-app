@@ -15,7 +15,7 @@ function Home() {
       <div style={{ margin: "10px" }}>
         <Stepper />
 
-        <Box sx={{marginTop:"50px"}}>
+        <Box sx={{ marginTop: "50px" }}>
           <HomeSteps />
           <hr style={{ opacity: "0.2", marginTop: "60px" }} />
           <AboutCard />
