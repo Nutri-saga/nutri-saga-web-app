@@ -1,12 +1,13 @@
 import React from "react";
-import BusinessIcon from "@mui/icons-material/Business";
+
+//@mui
 import { Card, CardContent, Box, Typography } from "@mui/material";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import MailIcon from "@mui/icons-material/Mail";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import CallIcon from "@mui/icons-material/Call";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
+//Component
 function Adress() {
   return (
     <Box sx={{ padding: "20px", paddingLeft: "100px", paddingRight: "100px" }}>

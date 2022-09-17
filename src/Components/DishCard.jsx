@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
+
+//@mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
+//Context
 import { DishContext } from "../Context/DishContext";
 
+//Component
 export default React.memo(function DishCard({ val }) {
   const { setDish, dishes, getDish, removeDish } = useContext(DishContext);
 
@@ -101,8 +103,14 @@ export default React.memo(function DishCard({ val }) {
 
           <div style={{ marginTop: "10px" }}>
             {" "}
-            {val["status"] == "remove" || cart ? (
-              <Button fullWidth sx={{textTransform:"inherit"}} variant="contained" color="error" onClick={handleRemove}>
+            {val["status"] === "remove" || cart ? (
+              <Button
+                fullWidth
+                sx={{ textTransform: "inherit" }}
+                variant="contained"
+                color="error"
+                onClick={handleRemove}
+              >
                 Remove Dish
                 {/* <CalendarMonthIcon
                   sx={{ marginTop: "-5px", marginLeft: "3px" }}
@@ -110,7 +118,13 @@ export default React.memo(function DishCard({ val }) {
                 /> */}
               </Button>
             ) : (
-              <Button fullWidth sx={{textTransform:"inherit"}} variant="contained" color="success" onClick={handleAdd}>
+              <Button
+                fullWidth
+                sx={{ textTransform: "inherit" }}
+                variant="contained"
+                color="success"
+                onClick={handleAdd}
+              >
                 Add Dish
                 {/* <CalendarMonthIcon
                   sx={{ marginTop: "-5px", marginLeft: "3px" }}

@@ -1,7 +1,12 @@
 import React, { Suspense } from "react";
+
+//react-router-dom
 import { Route, Routes } from "react-router-dom";
+
+//Protected route function
 import ProtectedRoutes from "./ProtectedRoutes";
 
+//importing components as lazy loading
 const AddDish = React.lazy(() => import("../Pages/AddDish"));
 const Dishes = React.lazy(() => import("../Pages/Dishes"));
 const Planner = React.lazy(() => import("../Pages/Planner"));

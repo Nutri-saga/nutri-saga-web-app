@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 
+//@mui
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,18 +18,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { Badge } from "@mui/material";
 
+//@react-router-dom
 import { useNavigate, Link } from "react-router-dom";
 
+//Context
 import { DishContext } from "../Context/DishContext";
 import { AuthContext } from "../Context/AuthContext";
 
-import { purple } from "@mui/material/colors";
-
 const pages = [];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const NavBar = ({ handleMenu }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -90,7 +89,7 @@ const NavBar = ({ handleMenu }) => {
               <MenuIcon sx={{ fontSize: "40px" }} />
             </Button>
 
-            <Link style={{textDecoration:"none"}} to="/">
+            <Link style={{ textDecoration: "none" }} to="/">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={logo} width="70" />
                 <Typography
@@ -183,13 +182,13 @@ const NavBar = ({ handleMenu }) => {
                 }}
               >
                 <span style={{ marginRight: "3px" }}>
-                  {page == "Home" && <HomeIcon />}
+                  {page === "Home" && <HomeIcon />}
                 </span>
                 <span style={{ marginRight: "3px" }}>
-                  {page == "About" && <InfoIcon />}
+                  {page === "About" && <InfoIcon />}
                 </span>
                 <span style={{ marginRight: "3px" }}>
-                  {page == "Blog" && <BorderColorIcon />}
+                  {page === "Blog" && <BorderColorIcon />}
                 </span>
                 {page}
               </Button>

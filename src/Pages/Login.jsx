@@ -1,24 +1,26 @@
 import React, { useContext, useState, useEffect } from "react";
+
+//Context's
 import { AuthContext } from "../Context/AuthContext";
 
+//@mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { CardActionArea, CircularProgress, Typography } from "@mui/material";
+import { CardActionArea, CircularProgress } from "@mui/material";
 import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
-import { Link } from "react-router-dom";
-import img from "../assets/nutritionLogin.jpg";
-import { useNavigate } from "react-router-dom";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+
+//react-router-dom
+import { useNavigate } from "react-router-dom";
+
+//images
+import img from "../assets/nutritionLogin.jpg";
 
 const StyledTextField = styled(TextField)(() => ({
   marginBottom: "20px",
-}));
-const StyledLink = styled(Link)(() => ({
-  textDecoration: "none",
-  color: "#1872CB",
 }));
 
 function Login() {
@@ -51,14 +53,14 @@ function Login() {
       }, 2000);
       return;
     }
-    if(username , password){
+    if ((username, password)) {
       login(username, password);
-    }else{
-      setErr('Username and password not entered...')
-      setTimeout(()=>{
+    } else {
+      setErr("Username and password not entered...");
+      setTimeout(() => {
         setErr("");
         setLoading(false);
-      },2000)
+      }, 2000);
     }
   };
 
@@ -81,10 +83,8 @@ function Login() {
         <CardActionArea>
           <form onSubmit={handleSubmit}>
             <>
-              {" "}
               <CardContent sx={{ padding: "30px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  {" "}
                   <AssignmentIndIcon
                     sx={{ marginRight: "5px" }}
                     fontSize="large"

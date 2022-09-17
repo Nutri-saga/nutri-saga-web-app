@@ -27,28 +27,28 @@ export const DishProvider = (props) => {
     getDish();
   };
 
-  const setShop = (val) =>{
+  const setShop = (val) => {
     let arr = [];
-    if(localStorage.getItem('shop')){
-        arr = JSON.parse(localStorage.getItem('shop'))
-        const ans = [...arr, val._id];
-        localStorage.setItem('shop', JSON.stringify(ans))
-    }else{
-        arr.push(val._id);
-        localStorage.setItem('shop', JSON.stringify(arr));
+    if (localStorage.getItem("shop")) {
+      arr = JSON.parse(localStorage.getItem("shop"));
+      const ans = [...arr, val._id];
+      localStorage.setItem("shop", JSON.stringify(ans));
+    } else {
+      arr.push(val._id);
+      localStorage.setItem("shop", JSON.stringify(arr));
     }
-  }
+  };
 
   const removeShop = (val) => {
     const arr = JSON.parse(localStorage.getItem("shop"));
-    const ans = arr.filter((id) => id!==id);
+    const ans = arr.filter((id) => id !== id);
     localStorage.setItem("shop", JSON.stringify(ans));
   };
 
-  const getShop = () =>{
-    const arr = JSON.parse(localStorage.getItem('shop'))
+  const getShop = () => {
+    const arr = JSON.parse(localStorage.getItem("shop"));
     return arr;
-  }
+  };
 
   useEffect(() => {
     getDish();

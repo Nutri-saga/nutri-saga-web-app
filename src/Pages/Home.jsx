@@ -1,15 +1,18 @@
-import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
+
+//mui
+import { Box } from "@mui/system";
+
+//Components
 import AboutCard from "../Components/AboutCard";
 import HomeSteps from "../Components/HomeSteps";
 import Stepper from "../Components/Stepper";
-import Card from "@mui/material/Card";
-import { Box } from "@mui/system";
 
 function Home() {
   useEffect(() => {
     document.title = "Home";
   }, []);
+
   return (
     <div>
       <div style={{ margin: "10px" }}>

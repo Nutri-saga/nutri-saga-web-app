@@ -1,34 +1,42 @@
 import React, { useContext, useEffect } from "react";
-import ShopList from "../Components/ShopList";
-import { Card } from "@mui/material";
 
-import { DishContext } from "../Context/DishContext";
-import ShopBag from "../assets/cart.png";
-
+//@mui
 import Typography from "@mui/material/Typography";
-
+import { Card } from "@mui/material";
 import styled from "@emotion/styled";
 
-const DivContainer = styled('div')(()=>({
-  height:"60vh",
-  overflowY:"scroll",
-  '&::-webkit-scrollbar': {
-      width: '0.4em'
-    },
-    '&::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#1976D2',
-      borderRadius:"5px"
-    }
-}))
+//Components
+import ShopList from "../Components/ShopList";
+
+//Context
+import { DishContext } from "../Context/DishContext";
+
+//images
+import ShopBag from "../assets/cart.png";
+
+//styling
+const DivContainer = styled("div")(() => ({
+  height: "60vh",
+  overflowY: "scroll",
+  "&::-webkit-scrollbar": {
+    width: "0.4em",
+  },
+  "&::-webkit-scrollbar-track": {
+    "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "#1976D2",
+    borderRadius: "5px",
+  },
+}));
 
 export default function ShoppingList() {
   const { dishes } = useContext(DishContext);
-  useEffect(()=>{
-    document.title=`Shopping Bag (${dishes?.length || 'Nothing to shop'})`
-  },[])
+
+  useEffect(() => {
+    document.title = `Shopping Bag (${dishes?.length || "Nothing to shop"})`;
+  }, []);
+
   return (
     <div>
       <Card
@@ -48,22 +56,22 @@ export default function ShoppingList() {
         <DivContainer>
           {dishes?.length > 0 ? (
             <div>
-            {dishes?.map((val, indx) => (
-              <ShopList key={indx} val={val} />
-            ))}
-          </div>
+              {dishes?.map((val, indx) => (
+                <ShopList key={indx} val={val} />
+              ))}
+            </div>
           ) : (
             <div
-            style={{
-              width: "fit-content",
-              margin: "auto",
-              fontSize: "20px",
-              fontWeight: "600",
-              marginTop: "40px",
-            }}
-          >
-            Nothing to shop ☹️
-          </div>
+              style={{
+                width: "fit-content",
+                margin: "auto",
+                fontSize: "20px",
+                fontWeight: "600",
+                marginTop: "40px",
+              }}
+            >
+              Nothing to shop ☹️
+            </div>
           )}
         </DivContainer>
       </Card>

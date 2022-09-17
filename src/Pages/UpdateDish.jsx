@@ -1,38 +1,42 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 
+//@mui
 import Box from "@mui/material/Box";
-
-import { getDishes } from "../Context/ComponentActions";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
+//api's
+import { getDishes } from "../Context/ComponentActions";
+
+//components
 const UpdateDishCards = lazy(() => import("../Components/UpdateDishCards"));
 
-const DivContainer = styled('div')(()=>({
-    height:"74vh",
-    overflowY:"scroll",
-    '&::-webkit-scrollbar': {
-        width: '0.4em'
-      },
-      '&::-webkit-scrollbar-track': {
-        '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-      },
-      '&::-webkit-scrollbar-thumb': {
-        backgroundColor: '#1faa00',
-        borderRadius:"5px"
-      }
-}))
+//styling
+const DivContainer = styled("div")(() => ({
+  height: "74vh",
+  overflowY: "scroll",
+  "&::-webkit-scrollbar": {
+    width: "0.4em",
+  },
+  "&::-webkit-scrollbar-track": {
+    "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "#1faa00",
+    borderRadius: "5px",
+  },
+}));
 
 function Dishes() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
   const getData = async () => {
-    const { data, err } = await getDishes();
+    const { data } = await getDishes();
     if (data) {
       setData(data);
     } else {
@@ -40,7 +44,7 @@ function Dishes() {
     }
   };
   useEffect(() => {
-    document.title= "Update Dish"
+    document.title = "Update Dish";
     getData();
   }, []);
 
@@ -56,7 +60,7 @@ function Dishes() {
   }, [search]);
   return (
     <Suspense fallback={<div>Loading...</div>}>
-           <div
+      <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -94,15 +98,17 @@ function Dishes() {
               marginRight: "10px",
               color: "#1faa00",
               boxShadow: "#1faa00 3px 3px 8px ",
-              color:"#1faa00",
-              fontWeight:"600"
+              color: "#1faa00",
+              fontWeight: "600",
             },
           }}
         />
       </div>
-      <hr style={{boxShadow:"#1faa00 1px 1px 5px", borderColor:"#1faa00"}}/>
-      <DivContainer >
-        {data ? (
+      <hr
+        style={{ boxShadow: "#1faa00 1px 1px 5px", borderColor: "#1faa00" }}
+      />
+      <DivContainer>
+        {data.length > 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -110,7 +116,7 @@ function Dishes() {
               flexWrap: "wrap",
             }}
           >
-            {searchData!=""
+            {searchData != ""
               ? searchData.map((val, indx) => (
                   <Box key={indx} sx={{ margin: "10px" }}>
                     <UpdateDishCards val={val} />
@@ -123,7 +129,11 @@ function Dishes() {
                 ))}
           </Box>
         ) : (
-          <div>Loading...</div>
+          <div
+            style={{ width: "fit-content", margin: "auto", marginTop: "10px" }}
+          >
+            <CircularProgress sx={{ color: "green" }} />
+          </div>
         )}
       </DivContainer>
     </Suspense>

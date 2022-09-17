@@ -1,9 +1,13 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
 import React, { useEffect } from "react";
+
+//mui
+import { Box } from "@mui/material";
+
+//component's
 import AboutCard from "../Components/AboutCard";
 import Adress from "../Components/Adress";
 
-
+//main component
 function About() {
   useEffect(() => {
     document.title = "About";
@@ -12,7 +16,7 @@ function About() {
     <Box>
       <AboutCard />
       <Box>
-        <Adress/>
+        <Adress />
       </Box>
     </Box>
   );

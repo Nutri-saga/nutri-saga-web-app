@@ -1,10 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
+
+//@mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+
+//react-router-dom
 import { useNavigate } from "react-router-dom";
 
-
+//Component
 export default React.memo(function UpdateDishCards({ val }) {
   const navigate = useNavigate();
 
@@ -33,14 +37,6 @@ export default React.memo(function UpdateDishCards({ val }) {
           paddingTop: "120px",
         }}
       >
-        {/* <CardMedia
-        component="img"
-        width="auto"
-        height="60%"
-        image={val.image_url["url"]}
-        alt={val.name}
-        sx={{border:"2px solid green", borderRadius:"5px", padding:"3px"}}
-      /> */}
         <CardContent>
           <Typography
             sx={{
@@ -56,10 +52,6 @@ export default React.memo(function UpdateDishCards({ val }) {
           >
             {val.name}
           </Typography>
-          {/* <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Servings</span>
-            {`: ${val.servings}`}
-          </Typography> */}
         </CardContent>
       </Card>
     </div>

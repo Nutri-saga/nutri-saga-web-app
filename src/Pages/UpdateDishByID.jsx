@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
+
+//api's
 import { deleteDish, getDish, updateDish } from "../Context/ComponentActions";
-import { useParams } from "react-router-dom";
+
+//react-router-dom
+import { useParams, useNavigate } from "react-router-dom";
+
+//@mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import {
@@ -12,7 +18,8 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
-import { useNavigate } from "react-router-dom";
+
+//context
 import { DishContext } from "../Context/DishContext";
 
 function UpdateDishByID() {
@@ -22,7 +29,7 @@ function UpdateDishByID() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const {removeDish} = useContext(DishContext);
+  const { removeDish } = useContext(DishContext);
 
   const nameRef = useRef();
   const servingsRef = useRef();
@@ -75,34 +82,33 @@ function UpdateDishByID() {
       }, 1500);
     }
   };
-  
-  const handleDelete = async()=>{
-    const ans = window.confirm('Are you sure want to delete.')
+
+  const handleDelete = async () => {
+    const ans = window.confirm("Are you sure want to delete.");
     setLoading(true);
-    if(ans){ 
-      const {success, err} =  await deleteDish(id);
-      console.log(success)
-     if(success){
+    if (ans) {
+      const { success, err } = await deleteDish(id);
+      console.log(success);
+      if (success) {
         setDone("Dish delete successfully...");
         removeDish(data);
-        setTimeout(()=>{
-            setLoading(false);
-            navigate('/updatedish')
-        },1000)
-     }else if(err){
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/updatedish");
+        }, 1000);
+      } else if (err) {
         setError(err);
-        setTimeout(()=>{
-            setError('');
-            setLoading(false);
-            navigate('/updatedish');
-        },1500)
-     }
-    }else{
-        setLoading(false);
-        return;
+        setTimeout(() => {
+          setError("");
+          setLoading(false);
+          navigate("/updatedish");
+        }, 1500);
+      }
+    } else {
+      setLoading(false);
+      return;
     }
-
-  }
+  };
 
   useEffect(() => {
     getData();
@@ -202,15 +208,15 @@ function UpdateDishByID() {
             <span style={{ color: "red" }}>
               * Please add quantity in grams.
             </span>
-            <Box sx={{dispaly:"flex"}} fullWidth>
+            <Box sx={{ dispaly: "flex" }} fullWidth>
               <Button
                 sx={{
                   color: "white",
                   fontWeight: "500",
                   letterSpacing: "0.05em",
                   marginTop: "10px",
-                  width:"49%",
-                  marginRight:"2%"
+                  width: "49%",
+                  marginRight: "2%",
                 }}
                 variant="contained"
                 color="success"
@@ -225,7 +231,7 @@ function UpdateDishByID() {
                   fontWeight: "500",
                   letterSpacing: "0.05em",
                   marginTop: "10px",
-                  width:"49%"
+                  width: "49%",
                 }}
                 variant="contained"
                 color="error"
@@ -238,7 +244,16 @@ function UpdateDishByID() {
           </form>
         </CardContent>
         <CardContent>
-          <img style={{ width: "100%", border:"2px solid green", padding:"10px", borderRadius:"5px", boxShadow:"green 2px 2px 8px" }} src={data.image_url?.url} />
+          <img
+            style={{
+              width: "100%",
+              border: "2px solid green",
+              padding: "10px",
+              borderRadius: "5px",
+              boxShadow: "green 2px 2px 8px",
+            }}
+            src={data.image_url?.url}
+          />
         </CardContent>
       </CardActionArea>
     </Card>

@@ -1,4 +1,6 @@
 import * as React from "react";
+
+//@mui
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
@@ -14,8 +16,11 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Card, Typography } from "@mui/material";
-import {useNavigate} from 'react-router-dom';
 
+//react-router-dom
+import { useNavigate } from "react-router-dom";
+
+//Styling
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
@@ -173,7 +178,7 @@ ColorlibStepIcon.propTypes = {
   icon: PropTypes.node,
 };
 const steps = ["Calculate Daily Nutrition", "Explore Dish List", "Shopping"];
-const navigation = ['calculator', 'dishes', 'planner'];
+const navigation = ["calculator", "dishes", "planner"];
 
 export default function CustomizedSteppers() {
   const [activeState, setActiveState] = React.useState(0);
@@ -191,7 +196,10 @@ export default function CustomizedSteppers() {
   });
   return (
     <Box>
-      <Typography sx={{fontWeight:"600",letterSpacing:"0.05em"}} align="center">{`Dynammic Stepline (${activeState}/3)`}</Typography>
+      <Typography
+        sx={{ fontWeight: "600", letterSpacing: "0.05em" }}
+        align="center"
+      >{`Dynammic Stepline (${activeState}/3)`}</Typography>
       <Stack sx={{ width: "100%", marginTop: "35px" }} spacing={4}>
         <Stepper
           alternativeLabel
@@ -210,8 +218,11 @@ export default function CustomizedSteppers() {
           connector={<ColorlibConnector />}
         >
           {steps.map((label, index) => (
-            <Step sx={{cursor:"pointer"}} key={label}>
-              <StepLabel  onClick={()=>navigate(navigation[index])} StepIconComponent={ColorlibStepIcon}>
+            <Step sx={{ cursor: "pointer" }} key={label}>
+              <StepLabel
+                onClick={() => navigate(navigation[index])}
+                StepIconComponent={ColorlibStepIcon}
+              >
                 {label}
               </StepLabel>
             </Step>

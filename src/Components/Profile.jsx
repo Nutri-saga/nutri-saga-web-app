@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { styled } from "@mui/material/styles";
+
+//@mui
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
+import Alert from "@mui/material/Alert";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import { red } from "@mui/material/colors";
 import { Button, CircularProgress, TextField } from "@mui/material";
-import Alert from "@mui/material/Alert";
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
+//axios
 import axios from "axios";
 
+//context
 import { AuthContext } from "../Context/AuthContext";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 export default function RecipeReviewCard() {
   const nameRef = React.useRef();
@@ -33,11 +24,11 @@ export default function RecipeReviewCard() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { user, update, setUser } = React.useContext(AuthContext);
+  const { user, setUser } = React.useContext(AuthContext);
 
-  useEffect(()=>{
-    document.title = "Profile"
-  },[])
+  useEffect(() => {
+    document.title = "Profile";
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -94,9 +85,12 @@ export default function RecipeReviewCard() {
         <CardContent sx={{ width: "400px", margin: "auto" }}>
           {success !== "" && <Alert severity="success">{success}</Alert>}
           {error !== "" && <Alert severity="error">{error}</Alert>}
-          <div style={{width:"fit-content", margin:"auto"}}>
-            <Avatar sx={{ background:"green", height:"120px", width:"120px" }} aria-label="recipe">
-              <AssignmentIndIcon sx={{fontSize:"100px"}}/>
+          <div style={{ width: "fit-content", margin: "auto" }}>
+            <Avatar
+              sx={{ background: "green", height: "120px", width: "120px" }}
+              aria-label="recipe"
+            >
+              <AssignmentIndIcon sx={{ fontSize: "100px" }} />
             </Avatar>
           </div>
           <br />

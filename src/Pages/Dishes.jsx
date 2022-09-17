@@ -1,16 +1,20 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 
-import Box from "@mui/material/Box";
-
+//api's
 import { getDishes } from "../Context/ComponentActions";
-import { TextField, Typography } from "@mui/material";
+
+//mui
+import Box from "@mui/material/Box";
+import { CircularProgress, TextField, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
 
+//Component's
 const DishCard = lazy(() => import("../Components/DishCard"));
 
+//styling
 const DivContainer = styled("div")(() => ({
   height: "74vh",
   overflowY: "scroll",
@@ -26,6 +30,7 @@ const DivContainer = styled("div")(() => ({
   },
 }));
 
+//main component
 function Dishes() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
@@ -69,7 +74,7 @@ function Dishes() {
             color: "#1faa00",
             fontWeight: "600",
             padding: "0px 10px 0px 10px",
-            letterSpacing: "0.05em"
+            letterSpacing: "0.05em",
           }}
         >
           Dish List
@@ -94,15 +99,18 @@ function Dishes() {
               marginRight: "10px",
               color: "#1faa00",
               boxShadow: "#1faa00 3px 3px 8px ",
-              color:"#1faa00",
-              fontWeight:"600"
+              color: "#1faa00",
+              fontWeight: "600",
             },
           }}
         />
       </div>
-      <hr style={{ boxShadow: "#1faa00 1px 1px 5px", borderColor: "#1faa00" }} />
+      <hr
+        style={{ boxShadow: "#1faa00 1px 1px 5px", borderColor: "#1faa00" }}
+      />
       <DivContainer>
-        {data ? (
+        {console.log(data)}
+        {data.length > 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -123,7 +131,11 @@ function Dishes() {
                 ))}
           </Box>
         ) : (
-          <div>Loading...</div>
+          <div
+            style={{ width: "fit-content", margin: "auto", marginTop: "10px" }}
+          >
+            <CircularProgress sx={{ color: "green" }} />
+          </div>
         )}
       </DivContainer>
     </Suspense>

@@ -1,9 +1,14 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import { Box, Container } from "@mui/system";
-import {useNavigate} from 'react-router-dom';
 
+//@mui
+import { CardContent, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import InfoIcon from "@mui/icons-material/Info";
+
+//@react-router-dom
+import { useNavigate } from "react-router-dom";
+
+//component
 function AboutCard() {
   const navigate = useNavigate();
   return (
@@ -22,9 +27,9 @@ function AboutCard() {
           width: "fit-content",
           margin: "auto",
           alignItems: "center",
-          cursor:"pointer"
+          cursor: "pointer",
         }}
-        onClick={()=>navigate('/about')}
+        onClick={() => navigate("/about")}
       >
         <InfoIcon />
         <Typography align="center" sx={{ fontWeight: "600" }}>

@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import DishCard from "../Components/DishCard";
 
+//@mui
 import { Box, Card, Typography } from "@mui/material";
-
-import { DishContext } from "../Context/DishContext";
-import PlannerCard from "../Components/PlannerCard";
 import CloseIcon from "@mui/icons-material/Close";
 
+//component's
+import DishCard from "../Components/DishCard";
+import { DishContext } from "../Context/DishContext";
+import PlannerCard from "../Components/PlannerCard";
 import styled from "@emotion/styled";
 
 const DivContainer = styled("div")(() => ({
@@ -26,7 +27,7 @@ const DivContainer = styled("div")(() => ({
 }));
 
 function Planner() {
-  const { setDish, dishes } = useContext(DishContext);
+  const { dishes } = useContext(DishContext);
   const [data, setData] = useState();
   const [show, setShow] = useState(true);
 
@@ -75,7 +76,7 @@ function Planner() {
               padding: "10px",
             }}
           >
-            <div style={{width:"fit-content", marginLeft:"auto"}}>
+            <div style={{ width: "fit-content", marginLeft: "auto" }}>
               <CloseIcon
                 onClick={() => setShow((prev) => !prev)}
                 sx={{ position: "relative", color: "white", cursor: "pointer" }}
@@ -102,10 +103,10 @@ function Planner() {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent:"space-around",
+            justifyContent: "space-around",
             width: "100%",
             padding: "20px",
-            float:"left"
+            float: "left",
           }}
         >
           {dishes?.map((val, indx) => (

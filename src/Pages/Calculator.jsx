@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+//@mui
 import {
   Card,
   Box,
@@ -11,6 +13,8 @@ import {
   CircularProgress,
 } from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
+
+//react-router-dom
 import { useNavigate } from "react-router-dom";
 
 function Calculator() {
@@ -19,19 +23,18 @@ function Calculator() {
   const [fats, setFats] = useState(0);
   const [protein, setProtein] = useState(0);
   const [calories, setCalories] = useState(0);
-
   const [cal, setCal] = useState("");
-  const [loading, setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     document.title = "Daily Nutri Calculator";
-  },[])
+  }, []);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const obj = {
       Energy: parseInt(energy) * parseInt(days),
       Fats: parseInt(fats) * parseInt(days),
@@ -41,16 +44,16 @@ function Calculator() {
     localStorage.setItem("calculator", JSON.stringify(obj));
 
     setCal("Your daily nutrition is set successfully...");
-    navigate('/dishes');
-    setTimeout(()=>{
-        setCal('')
-        setLoading(false)
-    },2000)
+    navigate("/dishes");
+    setTimeout(() => {
+      setCal("");
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <Box>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <Card
           sx={{
             width: "400px",
@@ -206,7 +209,11 @@ function Calculator() {
               }}
               variant="contained"
             >
-             {loading ? <CircularProgress size="1rem" sx={{color:"white"}}/> : "Convert"}
+              {loading ? (
+                <CircularProgress size="1rem" sx={{ color: "white" }} />
+              ) : (
+                "Convert"
+              )}
             </Button>
             <Button
               sx={{ color: "gray", textTransform: "inherit" }}

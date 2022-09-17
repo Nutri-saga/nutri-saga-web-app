@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+
+//@mui
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
@@ -9,8 +11,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Navbar from "./NavBar";
-import { Typography } from "@mui/material";
-import { SidebarData, AdminSidebarData } from "./SidebarData";
+import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -19,10 +20,16 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import UpdateIcon from "@mui/icons-material/Update";
 import PersonIcon from "@mui/icons-material/Person";
 import CalculateIcon from "@mui/icons-material/Calculate";
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
 
+//sidebar data
+import { SidebarData, AdminSidebarData } from "./SidebarData";
+
+//react-router-dom
 import { useNavigate } from "react-router-dom";
+
+//Context
 import { AuthContext } from "../Context/AuthContext";
 
 const drawerWidth = 240;

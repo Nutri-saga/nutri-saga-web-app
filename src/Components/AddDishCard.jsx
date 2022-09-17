@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
+
+//@mui
+import styled from "@emotion/styled";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Button, CardActionArea, CircularProgress, TextField, Typography } from "@mui/material";
-import { addDish, getDishes } from "../Context/ComponentActions";
-import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
-import styled from "@emotion/styled";
+import {
+  Button,
+  CardActionArea,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Box } from "@mui/system";
+
+//api's functions
+import { addDish, getDishes } from "../Context/ComponentActions";
+
+//DishList Component
 import DishList from "./DishList";
 
+//styling
 const StyleDiv = styled("div")(() => ({
   height: "75vh",
   overflowY: "scroll",
@@ -23,6 +36,7 @@ const StyleDiv = styled("div")(() => ({
   },
 }));
 
+//Component
 const DishLists = React.memo(function DishLists({ data }) {
   return (
     <Card
@@ -44,11 +58,15 @@ const DishLists = React.memo(function DishLists({ data }) {
       >
         Dish List
       </Typography>
-     { data ? <StyleDiv>
-        {data.map((val, indx) => (
-          <DishList val={val} key={indx} />
-        ))}
-      </StyleDiv> : <CircularProgress/>}
+      {data ? (
+        <StyleDiv>
+          {data.map((val, indx) => (
+            <DishList val={val} key={indx} />
+          ))}
+        </StyleDiv>
+      ) : (
+        <CircularProgress />
+      )}
     </Card>
   );
 });
@@ -68,9 +86,8 @@ export default function AddDishCard() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
+  //adding image
   const onChange = (e) => {
-    console.log(e);
-
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -251,7 +268,7 @@ export default function AddDishCard() {
                 disabled={loading}
                 fullWidth
               >
-                {loading ? <CircularProgress/> :"Submit"}
+                {loading ? <CircularProgress /> : "Submit"}
               </Button>
             </form>
           </CardContent>
