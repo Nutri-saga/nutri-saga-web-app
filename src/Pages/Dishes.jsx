@@ -5,7 +5,12 @@ import { getDishes } from "../Context/ComponentActions";
 
 //mui
 import Box from "@mui/material/Box";
-import { CircularProgress, TextField, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  OutlinedInput,
+  TextField,
+  Typography,
+} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
@@ -27,6 +32,22 @@ const DivContainer = styled("div")(() => ({
   "&::-webkit-scrollbar-thumb": {
     backgroundColor: "#1faa00",
     borderRadius: "5px",
+  },
+}));
+
+const SearchBox = styled(Box)(() => ({
+  "& .MuiOutlinedInput-root": {
+    width: "200px",
+    fontSize: "12px",
+    background: "#FFFFFF",
+    borderRadius: "4px",
+    height: "1.8rem",
+    color: "#222222",
+    margin: 0,
+    padding: "1rem",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "2px solid #1faa00",
   },
 }));
 
@@ -75,41 +96,27 @@ function Dishes() {
             fontWeight: "600",
             padding: "0px 10px 0px 10px",
             letterSpacing: "0.05em",
+            fontSize: "18px",
           }}
         >
           Dish List
         </Typography>
-        <TextField
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by name..."
-          variant="outlined"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment>
-                <IconButton>
-                  <SearchIcon sx={{ color: "#1faa00" }} />
-                </IconButton>
+        <SearchBox>
+          <OutlinedInput
+            placeholder="Search"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon fontSize="small" className="search-icon" />
               </InputAdornment>
-            ),
-            style: {
-              height: "40px",
-              width: "300px",
-              borderRadius: "20px",
-              marginRight: "10px",
-              color: "#1faa00",
-              boxShadow: "#1faa00 3px 3px 8px ",
-              color: "#1faa00",
-              fontWeight: "600",
-            },
-          }}
-        />
+            }
+          />
+        </SearchBox>
       </div>
-      <hr
-        style={{ boxShadow: "#1faa00 1px 1px 5px", borderColor: "#1faa00" }}
-      />
+      <hr style={{ opacity: "0.1", background: "gray" }} />
       <DivContainer>
-        {console.log(data)}
         {data.length > 0 ? (
           <Box
             sx={{

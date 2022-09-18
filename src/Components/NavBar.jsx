@@ -74,10 +74,11 @@ const NavBar = ({ handleMenu }) => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl" sx={{ background: "#1faa00" }}>
-        <Toolbar disableGutters>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <div
             style={{
               display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
               marginLeft: "-8px",
             }}
@@ -91,195 +92,135 @@ const NavBar = ({ handleMenu }) => {
 
             <Link style={{ textDecoration: "none" }} to="/">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={logo} width="70" />
+                <img src={logo} width="60" />
                 <Typography
                   variant="h6"
                   noWrap
                   component="a"
                   sx={{
-                    mr: 4,
-                    fontFamily: "sans-serif",
+                    ml: 1,
+                    fontFamily: "cursive",
                     fontWeight: 700,
-                    letterSpacing: ".3rem",
+                    fontSize: "20px",
+                    letterSpacing: "0.1rem",
                     textDecoration: "none",
                     textTransform: "uppercase",
                     fontSize: "16px",
-                    textShadow: "3px 3px gray",
-                    color: "whitesmoke",
+                    color: "white",
                   }}
                 >
-                  Nutri Saga{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(#F49590, yellow)",
+                      marginRight: "0.3rem",
+                      color: "#1faa00",
+                      padding: "0.5rem",
+                      fontFamily: "cursive",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Nutri
+                  </span>
+                  Saga
                 </Typography>
               </div>
             </Link>
           </div>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <img width="200" src={logo} />
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleButton(page)}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  display: "flex",
-                  fontWeight: "500",
-                }}
-              >
-                <span style={{ marginRight: "3px" }}>
-                  {page === "Home" && <HomeIcon />}
-                </span>
-                <span style={{ marginRight: "3px" }}>
-                  {page === "About" && <InfoIcon />}
-                </span>
-                <span style={{ marginRight: "3px" }}>
-                  {page === "Blog" && <BorderColorIcon />}
-                </span>
-                {page}
-              </Button>
-            ))}
-          </Box>
-          <Box sx={{ marginRight: "40px" }}>
-            <Badge
-              max={10}
-              badgeContent={dishes?.length > 0 ? dishes.length : "0"}
-              color="error"
-            >
-              <CalendarMonthIcon
-                sx={{ cursor: "pointer" }}
-                onClick={() => navigate("/planner")}
-              />
-            </Badge>
-          </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+            <Box sx={{ marginRight: "40px" }}>
+              <Badge
+                max={10}
+                badgeContent={dishes?.length > 0 ? dishes.length : "0"}
+                color="error"
+              >
+                <CalendarMonthIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/planner")}
+                />
+              </Badge>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box>
+                <Tooltip title="My Account">
+                  {user ? (
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      sx={{ fontSize: "12px" }}
+                    >
+                      <Avatar
+                        alt={user.username.toString().toUpperCase().charAt(0)}
+                        src="/static/images/avatar/2.jpg"
+                      />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      sx={{ fontSize: "12px" }}
+                    >
+                      <Avatar />
+                    </IconButton>
+                  )}
+                </Tooltip>
                 {user ? (
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt={user.username.toString().toUpperCase().charAt(0)}
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem key={1} onClick={handleCloseUserMenu}>
+                      <Typography
+                        onClick={() => navigate("/profile")}
+                        textAlign="center"
+                      >
+                        Profile
+                      </Typography>
+                    </MenuItem>
+                    <MenuItem key={2} onClick={handleCloseUserMenu}>
+                      <Typography onClick={logout} textAlign="center">
+                        Logout
+                      </Typography>
+                    </MenuItem>
+                  </Menu>
                 ) : (
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar />
-                  </IconButton>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography
+                        onClick={() => navigate("/login")}
+                        textAlign="center"
+                      >
+                        Login
+                      </Typography>
+                    </MenuItem>
+                  </Menu>
                 )}
-              </Tooltip>
-              {user ? (
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem key={1} onClick={handleCloseUserMenu}>
-                    <Typography
-                      onClick={() => navigate("/profile")}
-                      textAlign="center"
-                    >
-                      Profile
-                    </Typography>
-                  </MenuItem>
-                  <MenuItem key={2} onClick={handleCloseUserMenu}>
-                    <Typography onClick={logout} textAlign="center">
-                      Logout
-                    </Typography>
-                  </MenuItem>
-                </Menu>
-              ) : (
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography
-                      onClick={() => navigate("/login")}
-                      textAlign="center"
-                    >
-                      Login
-                    </Typography>
-                  </MenuItem>
-                </Menu>
-              )}
+              </Box>
             </Box>
           </Box>
         </Toolbar>

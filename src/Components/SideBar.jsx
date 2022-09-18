@@ -56,9 +56,9 @@ export default function SideBar(props) {
 
   const { user } = useContext(AuthContext);
 
-  const handleMenu = (value) => {
-    setOpen(!value);
-    console.log(value);
+  const handleSideBar = (item) => {
+    item.onClick(navigate);
+    setOpen((prev) => !prev);
   };
 
   return (
@@ -68,7 +68,7 @@ export default function SideBar(props) {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Navbar handleMenu={handleMenu} />
+        <Navbar handleMenu={() => setOpen((prev) => !prev)} />
       </AppBar>
       {open && (
         <Drawer
@@ -89,7 +89,7 @@ export default function SideBar(props) {
               <List>
                 {SidebarData.map((item, index) => (
                   <ListItem key={index}>
-                    <ListItemButton onClick={() => item.onClick(navigate)}>
+                    <ListItemButton onClick={() => handleSideBar(item)}>
                       <ListItemIcon>
                         <Icons type={item.text} />
                       </ListItemIcon>
@@ -127,7 +127,7 @@ export default function SideBar(props) {
 
                 {AdminSidebarData.map((item, index) => (
                   <ListItem key={index}>
-                    <ListItemButton onClick={() => item.onClick(navigate)}>
+                    <ListItemButton onClick={() => handleSideBar(item)}>
                       <ListItemIcon>
                         <Icons type={item.text} />
                       </ListItemIcon>
