@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 
 //@mui
+import ReactGA from "react-ga";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import ReactGA from "react-ga";
-
-const TRACKING_ID = "G-M9P7LV2K81";
 
 //Component's
 import Approuter from "./utils/Approuter";
 import SideBar from "./Components/SideBar";
 
+const TRACKING_ID = "G-M9P7LV2K81";
 ReactGA.initialize(TRACKING_ID);
 
 //main component
