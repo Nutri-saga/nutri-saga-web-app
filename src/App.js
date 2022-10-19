@@ -10,7 +10,13 @@ import Approuter from "./utils/Approuter";
 import SideBar from "./Components/SideBar";
 
 const TRACKING_ID = "UA-246110604-1";
-ReactGA.initialize(TRACKING_ID);
+ReactGA.initialize(TRACKING_ID, {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    userId: 123,
+  },
+});
 
 //main component
 function App() {
