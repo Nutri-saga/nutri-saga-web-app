@@ -9,7 +9,7 @@ import { Typography } from "@mui/material";
 import Approuter from "./utils/Approuter";
 import SideBar from "./Components/SideBar";
 
-const TRACKING_ID = "G-M9P7LV2K81";
+const TRACKING_ID = "UA-246110604-1";
 ReactGA.initialize(TRACKING_ID);
 
 //main component
