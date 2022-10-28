@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //@mui
-import ReactGA from "react-ga";
+// import ReactGA from "react-ga";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 
@@ -9,14 +9,14 @@ import { Typography } from "@mui/material";
 import Approuter from "./utils/Approuter";
 import SideBar from "./Components/SideBar";
 
-const TRACKING_ID = "UA-246110604-1";
-ReactGA.initialize(TRACKING_ID, {
-  debug: true,
-  titleCase: false,
-  gaOptions: {
-    userId: 123,
-  },
-});
+// const TRACKING_ID = "UA-246110604-1";
+// ReactGA.initialize(TRACKING_ID, {
+//   debug: true,
+//   titleCase: false,
+//   gaOptions: {
+//     userId: 123,
+//   },
+// });
 
 //main component
 function App() {

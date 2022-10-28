@@ -10,8 +10,17 @@ import Stepper from "../Components/Stepper";
 
 function Home() {
   useEffect(() => {
-    document.title = "Home";
-  }, []);
+    setInterval(() => {
+      if (document.hidden) {
+        document.title = "Come Back";
+      } else {
+        document.title = "Home";
+      }
+    }, 10);
+    return () => {
+      clearInterval();
+    };
+  });
 
   return (
     <div>
