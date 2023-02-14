@@ -30,7 +30,7 @@ import { SidebarData, AdminSidebarData } from "./SidebarData";
 import { useNavigate } from "react-router-dom";
 
 //Context
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const drawerWidth = 240;
 
@@ -66,7 +66,12 @@ export default function SideBar(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          "& .css-hip9hq-MuiPaper-root-MuiAppBar-root ": {
+            background: "#1faa00",
+          },
+        }}
       >
         <Navbar handleMenu={() => setOpen((prev) => !prev)} />
       </AppBar>

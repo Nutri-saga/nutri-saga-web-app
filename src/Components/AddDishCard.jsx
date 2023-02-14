@@ -15,7 +15,7 @@ import {
 import { Box } from "@mui/system";
 
 //api's functions
-import { addDish, getDishes } from "../Context/ComponentActions";
+import { addDish, getDishes } from "../api/ComponentActions";
 
 //DishList Component
 import DishList from "./DishList";
@@ -138,7 +138,7 @@ export default function AddDishCard() {
   };
 
   const getData = async () => {
-    const { data, err } = await getDishes();
+    const { data } = await getDishes();
     if (data) {
       setData(data);
       console.log(data);

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 //mui
 import { Card, CardContent, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 //context's
-import { AuthContext } from "../Context/AuthContext";
-import { DishContext } from "../Context/DishContext";
+import { AuthContext } from "../Contexts/AuthContext";
+import { DishContext } from "../Contexts/DishContext";
 
 //images
 import DishImg from "../assets/diet.png";
@@ -13,7 +13,7 @@ import CalendarImg from "../assets/schedule.png";
 import Bag from "../assets/cart.png";
 
 //api's
-import { getDishes } from "../Context/ComponentActions";
+import { getDishes } from "../api/ComponentActions";
 
 //react-router-dom
 import { useNavigate } from "react-router-dom";
@@ -28,17 +28,17 @@ function AdminDashboard() {
   const [cart, setCart] = useState(0);
   const [shop, setShop] = useState(0);
 
-  async function getData() {
+  const getData = useCallback(async () => {
     const { data } = await getDishes();
     setDish(data?.length);
     setCart(dishes?.length);
-  }
+  }, [dishes]);
 
   useEffect(() => {
     getData();
     const ans = getShop();
     setShop(parseInt(ans?.length) || 0);
-  }, []);
+  }, [getData, getShop]);
 
   return (
     <React.Fragment>
@@ -59,7 +59,7 @@ function AdminDashboard() {
         >
           <CardContent>
             <div style={{ width: "fit-content", margin: "auto" }}>
-              <img src={DishImg} width={100} height={100} />
+              <img alt="" src={DishImg} width={100} height={100} />
             </div>
             <Typography
               sx={{ color: "white", fontSize: "18px" }}
@@ -87,7 +87,7 @@ function AdminDashboard() {
         >
           <CardContent>
             <div style={{ width: "fit-content", margin: "auto" }}>
-              <img src={Bag} width={100} height={100} />
+              <img alt="" src={Bag} width={100} height={100} />
             </div>
             <Typography
               sx={{ color: "white", fontSize: "18px" }}
@@ -114,7 +114,7 @@ function AdminDashboard() {
         >
           <CardContent>
             <div style={{ width: "fit-content", margin: "auto" }}>
-              <img src={CalendarImg} width={100} height={100} />
+              <img alt="" src={CalendarImg} width={100} height={100} />
             </div>
             <Typography
               sx={{ color: "white", fontSize: "18px" }}
@@ -141,7 +141,7 @@ function AdminDashboard() {
         >
           <CardContent>
             <div style={{ width: "fit-content", margin: "auto" }}>
-              <img src={DishImg} width={100} height={100} />
+              <img alt="" src={DishImg} width={100} height={100} />
             </div>
             <Typography
               sx={{ color: "white", fontSize: "18px" }}

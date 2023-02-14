@@ -14,9 +14,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../assets/nutrisaga.png";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Badge } from "@mui/material";
 
@@ -24,13 +21,10 @@ import { Badge } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 
 //Context
-import { DishContext } from "../Context/DishContext";
-import { AuthContext } from "../Context/AuthContext";
-
-const pages = [];
+import { DishContext } from "../Contexts/DishContext";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const NavBar = ({ handleMenu }) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [open, setOpen] = React.useState(true);
 
@@ -39,31 +33,12 @@ const NavBar = ({ handleMenu }) => {
 
   const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-  const handleButton = (page) => {
-    handleCloseNavMenu();
-    if (page === "Home") {
-      navigate(`/`);
-    }
-    if (page === "About") {
-      navigate("/about");
-    }
-    if (page === "Blog") {
-      navigate("/blogs");
-    }
   };
 
   const handleClick = () => {
@@ -92,7 +67,7 @@ const NavBar = ({ handleMenu }) => {
 
             <Link style={{ textDecoration: "none" }} to="/">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={logo} width="60" />
+                <img alt="" src={logo} width="60" />
                 <Typography
                   variant="h6"
                   noWrap
@@ -101,7 +76,6 @@ const NavBar = ({ handleMenu }) => {
                     ml: 1,
                     fontFamily: "cursive",
                     fontWeight: 700,
-                    fontSize: "20px",
                     letterSpacing: "0.1rem",
                     textDecoration: "none",
                     textTransform: "uppercase",

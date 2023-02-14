@@ -18,6 +18,7 @@ export default React.memo(function UpdateDishCards({ val }) {
       onClick={() => navigate(`/updatedish/${val._id}`)}
     >
       <img
+        alt=""
         width="200px"
         height="200px"
         style={{

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 //Context
-import { DishContext } from "../Context/DishContext";
+import { DishContext } from "../Contexts/DishContext";
 
 //Component
 export default React.memo(function DishCard({ val }) {
@@ -21,8 +21,9 @@ export default React.memo(function DishCard({ val }) {
         setCart(true);
         getDish();
       }
+      return "";
     });
-  }, []);
+  }, [dishes, getDish, val]);
 
   const handleRemove = () => {
     val["status"] = "add";
@@ -38,6 +39,7 @@ export default React.memo(function DishCard({ val }) {
   return (
     <>
       <img
+        alt=""
         width="220px"
         height="220px"
         style={{

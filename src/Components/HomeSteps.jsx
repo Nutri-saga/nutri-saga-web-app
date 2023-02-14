@@ -15,7 +15,7 @@ import StepConnector, {
 import CalculateIcon from "@mui/icons-material/Calculate";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Card, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 //react-router-dom
 import { useNavigate } from "react-router-dom";
@@ -193,7 +193,8 @@ export default function CustomizedSteppers() {
         }
       }
     }
-  });
+  }, []);
+
   return (
     <Box>
       <Typography

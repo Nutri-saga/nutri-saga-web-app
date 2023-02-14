@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 //api's
-import { getDishes } from "../Context/ComponentActions";
+import { getDishes } from "../api/ComponentActions";
 
 //components
 const UpdateDishCards = lazy(() => import("../Components/UpdateDishCards"));
@@ -57,7 +57,7 @@ function Dishes() {
           .includes(search.toString().toLowerCase())
       )
     );
-  }, [search]);
+  }, [search, data]);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div
@@ -98,7 +98,6 @@ function Dishes() {
               marginRight: "10px",
               color: "#1faa00",
               boxShadow: "#1faa00 3px 3px 8px ",
-              color: "#1faa00",
               fontWeight: "600",
             },
           }}
@@ -116,7 +115,7 @@ function Dishes() {
               flexWrap: "wrap",
             }}
           >
-            {searchData != ""
+            {searchData !== ""
               ? searchData.map((val, indx) => (
                   <Box key={indx} sx={{ margin: "10px" }}>
                     <UpdateDishCards val={val} />

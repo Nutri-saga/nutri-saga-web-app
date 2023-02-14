@@ -1,17 +1,11 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 
 //api's
-import { getDishes } from "../Context/ComponentActions";
+import { getDishes } from "../api/ComponentActions";
 
 //mui
 import Box from "@mui/material/Box";
-import {
-  CircularProgress,
-  OutlinedInput,
-  TextField,
-  Typography,
-} from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+import { CircularProgress, OutlinedInput, Typography } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
@@ -58,7 +52,7 @@ function Dishes() {
   const [searchData, setSearchData] = useState([]);
 
   const getData = async () => {
-    const { data, err } = await getDishes();
+    const { data } = await getDishes();
     if (data) {
       setData(data);
     } else {
@@ -79,7 +73,7 @@ function Dishes() {
           .includes(search.toString().toLowerCase())
       )
     );
-  }, [search]);
+  }, [search, data]);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div
@@ -125,7 +119,7 @@ function Dishes() {
               flexWrap: "wrap",
             }}
           >
-            {searchData != ""
+            {searchData !== ""
               ? searchData.map((val, indx) => (
                   <Box key={indx} sx={{ margin: "10px" }}>
                     <DishCard val={val} />

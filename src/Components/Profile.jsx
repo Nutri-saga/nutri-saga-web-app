@@ -14,7 +14,7 @@ import { Button, CircularProgress, TextField } from "@mui/material";
 import axios from "axios";
 
 //context
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Contexts/AuthContext";
 
 export default function RecipeReviewCard() {
   const nameRef = React.useRef();

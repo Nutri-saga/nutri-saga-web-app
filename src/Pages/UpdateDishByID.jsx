@@ -1,7 +1,13 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useContext,
+  useCallback,
+} from "react";
 
 //api's
-import { deleteDish, getDish, updateDish } from "../Context/ComponentActions";
+import { deleteDish, getDish, updateDish } from "../api/ComponentActions";
 
 //react-router-dom
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,7 +26,7 @@ import { Box } from "@mui/system";
 import Alert from "@mui/material/Alert";
 
 //context
-import { DishContext } from "../Context/DishContext";
+import { DishContext } from "../Contexts/DishContext";
 
 function UpdateDishByID() {
   const [data, setData] = useState([]);
@@ -40,12 +46,12 @@ function UpdateDishByID() {
 
   const { id } = useParams();
 
-  async function getData() {
-    const { data, err } = await getDish(id);
+  const getData = useCallback(async () => {
+    const { data } = await getDish(id);
     if (data) {
       setData(data);
     }
-  }
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,7 +118,7 @@ function UpdateDishByID() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <Card
@@ -245,6 +251,7 @@ function UpdateDishByID() {
         </CardContent>
         <CardContent>
           <img
+            alt=""
             style={{
               width: "100%",
               border: "2px solid green",

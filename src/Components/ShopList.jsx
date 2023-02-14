@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Checkbox } from "@mui/material";
 
 //Context
-import { DishContext } from "../Context/DishContext";
+import { DishContext } from "../Contexts/DishContext";
 
 //Component
 export default React.memo(function ShopList({ val }) {
@@ -21,7 +21,7 @@ export default React.memo(function ShopList({ val }) {
           setChange(true);
         }
       }
-  }, []);
+  }, [getShop, val]);
 
   const handleChange = (e) => {
     console.log("yes");
@@ -43,7 +43,7 @@ export default React.memo(function ShopList({ val }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
-        <img width="40" height="40" src={val.image_url["url"]} />
+        <img width="40" alt="" height="40" src={val.image_url["url"]} />
         {changed ? (
           <Typography
             sx={{ marginLeft: "20px", textDecoration: "line-through" }}

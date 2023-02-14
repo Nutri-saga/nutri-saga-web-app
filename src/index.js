@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 //Context's
-import { AuthProvider } from "./Context/AuthContext";
-import { DishProvider } from "./Context/DishContext";
+import { AuthProvider } from "./Contexts/AuthContext";
+import { DishProvider } from "./Contexts/DishContext";
 
 import { BrowserRouter as Router } from "react-router-dom";
 

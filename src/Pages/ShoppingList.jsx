@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 import ShopList from "../Components/ShopList";
 
 //Context
-import { DishContext } from "../Context/DishContext";
+import { DishContext } from "../Contexts/DishContext";
 
 //images
 import ShopBag from "../assets/cart.png";
@@ -35,7 +35,7 @@ export default function ShoppingList() {
 
   useEffect(() => {
     document.title = `Shopping Bag (${dishes?.length || "Nothing to shop"})`;
-  }, []);
+  }, [dishes]);
 
   return (
     <div>
@@ -43,7 +43,7 @@ export default function ShoppingList() {
         sx={{ width: "80%", margin: "auto", boxShadow: "gray 2px 5px 15px" }}
       >
         <div style={{ width: "fit-content", margin: "auto" }}>
-          <img style={{ width: "100px" }} src={ShopBag} />
+          <img alt="" style={{ width: "100px" }} src={ShopBag} />
           <Typography
             sx={{ letterSpacing: "0.02em", fontWeight: "600" }}
             color="primary"

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 //Context's
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Contexts/AuthContext";
 
 //@mui
 import Card from "@mui/material/Card";
@@ -37,7 +37,7 @@ function Login() {
     if (user) {
       navigate("/dashboard");
     }
-  }, [isLoading, error, user]);
+  }, [isLoading, error, user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ function Login() {
       >
         <CardActionArea>
           <CardContent sx={{ padding: "0px", overflow: "hidden" }}>
-            <img style={{ width: "100%", height: "78vh" }} src={img} />
+            <img alt="" style={{ width: "100%", height: "78vh" }} src={img} />
           </CardContent>
         </CardActionArea>
         <CardActionArea>
@@ -91,7 +91,7 @@ function Login() {
                   />
                   <h1 style={{ paddingTop: "4px" }}>Admin Login</h1>
                 </div>
-                {err != "" && (
+                {err !== "" && (
                   <Alert sx={{ marginBottom: "10px" }} severity="error">
                     {err}
                   </Alert>

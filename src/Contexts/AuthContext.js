@@ -20,7 +20,7 @@ export const AuthProvider = (props) => {
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
-    const response = axios.get(`${process.env.REACT_APP_BASE_URL}user/logout`);
+    axios.get(`${process.env.REACT_APP_BASE_URL}user/logout`);
     navigate("/");
   };
 

@@ -22,7 +22,7 @@ export const DishProvider = (props) => {
 
   const removeDish = (val) => {
     const arr = JSON.parse(localStorage.getItem("dishes"));
-    const ans = arr.filter((dish) => dish._id != val._id);
+    const ans = arr.filter((dish) => dish._id !== val._id);
     localStorage.setItem("dishes", JSON.stringify(ans));
     getDish();
   };
@@ -41,8 +41,7 @@ export const DishProvider = (props) => {
 
   const removeShop = (val) => {
     const arr = JSON.parse(localStorage.getItem("shop"));
-    const ans = arr.filter((id) => id !== id);
-    localStorage.setItem("shop", JSON.stringify(ans));
+    localStorage.setItem("shop", JSON.stringify(arr));
   };
 
   const getShop = () => {

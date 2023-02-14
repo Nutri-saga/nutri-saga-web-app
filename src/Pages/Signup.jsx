@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //@mui
 import Card from "@mui/material/Card";
@@ -103,13 +103,13 @@ function SignUp() {
       >
         <CardActionArea>
           <CardContent sx={{ padding: "0px", overflow: "hidden" }}>
-            <img style={{ width: "100%", height: "78vh" }} src={img} />
+            <img alt="" style={{ width: "100%", height: "78vh" }} src={img} />
           </CardContent>
         </CardActionArea>
         <CardActionArea>
           <CardContent sx={{ padding: "30px" }}>
             <h1>SignUp</h1>
-            {err != "" && (
+            {err !== "" && (
               <Alert sx={{ marginBottom: "10px" }} severity="error">
                 {err}
               </Alert>

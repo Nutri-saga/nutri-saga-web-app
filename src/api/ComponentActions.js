@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const BASE_URL = "https://nutri-saga.onrender.com/api/v1";
+
 //to get all dishes -- get request.
 export const getDishes = async () => {
   const response = {
@@ -7,9 +9,7 @@ export const getDishes = async () => {
     err: null,
   };
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/dishes/`
-    );
+    const { data } = await axios.get(`${BASE_URL}/dishes/`);
     response.data = data.dishes;
   } catch (error) {
     response.err = error.message;
@@ -24,9 +24,7 @@ export const getDish = async (id) => {
     err: null,
   };
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/dishes/${id}`
-    );
+    const { data } = await axios.get(`${BASE_URL}/dishes/${id}`);
 
     response.data = data.dish;
   } catch (error) {
@@ -42,9 +40,7 @@ export const deleteDish = async (id) => {
     err: null,
   };
   try {
-    const { data } = await axios.delete(
-      `${process.env.REACT_APP_BASE_URL}/dishes/${id}`
-    );
+    const { data } = await axios.delete(`${BASE_URL}/dishes/${id}`);
     response.success = data.success;
   } catch (error) {
     response.err = error.response.data.message;
@@ -59,10 +55,7 @@ export const updateDish = async (modalData) => {
     err: null,
   };
   try {
-    const { data } = await axios.put(
-      `${process.env.REACT_APP_BASE_URL}/dishes/`,
-      modalData
-    );
+    const { data } = await axios.put(`${BASE_URL}/dishes/`, modalData);
     response.success = data.success;
   } catch (error) {
     if (error.response.status === 413) {
@@ -81,10 +74,7 @@ export const addDish = async (modalData) => {
     err: null,
   };
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/dishes/`,
-      modalData
-    );
+    const { data } = await axios.post(`${BASE_URL}/dishes/`, modalData);
     response.success = data.success;
   } catch (error) {
     if (error.response.status === 413) {

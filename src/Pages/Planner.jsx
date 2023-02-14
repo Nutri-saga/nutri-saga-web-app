@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 //component's
 import DishCard from "../Components/DishCard";
-import { DishContext } from "../Context/DishContext";
+import { DishContext } from "../Contexts/DishContext";
 import PlannerCard from "../Components/PlannerCard";
 import styled from "@emotion/styled";
 
@@ -36,7 +36,7 @@ function Planner() {
     if (localStorage.getItem("calculator")) {
       setData(JSON.parse(localStorage.getItem("calculator")));
     }
-  }, []);
+  }, [dishes]);
   let protein = 0;
   let energy = 0;
   let fats = 0;

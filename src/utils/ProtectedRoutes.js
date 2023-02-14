@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 //Context
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Contexts/AuthContext";
 
 //protected route function
 function ProtectedRoutes() {
