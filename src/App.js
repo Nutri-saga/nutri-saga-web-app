@@ -24,7 +24,6 @@ function Approuter() {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="app" element={<ViewLayout />}>
-          <Route path="" element={<Home />} />
           <Route path="dishes" element={<Dishes />} />
           <Route path="planner" element={<Planner />} />
           <Route path="shoppinglist" element={<ShoppingList />} />
@@ -37,6 +36,7 @@ function Approuter() {
           <Route path="updatedish/:id" element={<UpdateDishByID />} />
           <Route path="profile" element={<Profile />} />
         </Route>
+        <Route path="/" element={<Home />} />
       </Routes>
     </Suspense>
   );
