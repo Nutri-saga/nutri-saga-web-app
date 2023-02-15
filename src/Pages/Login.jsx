@@ -18,13 +18,14 @@ import { useNavigate } from "react-router-dom";
 
 //images
 import img from "../assets/nutritionLogin.jpg";
+import { userLogin } from "../api/ComponentActions";
 
 const StyledTextField = styled(TextField)(() => ({
   marginBottom: "20px",
 }));
 
 function Login() {
-  const { isLoading, user, error, login } = useContext(AuthContext);
+  const { isLoading, user, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(error);
@@ -39,28 +40,13 @@ function Login() {
     }
   }, [isLoading, error, user, navigate]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username === "" || password === "") {
-      console.log(process.env.REACT_APP_BASE_URL);
-      setLoading(true);
-      if (password) setErr("Please enter username");
-      if (username) setErr("Please enter password");
-      if (!username && !password) setErr("Please enter username and password");
-      setTimeout(() => {
-        setErr("");
-        setLoading(false);
-      }, 2000);
-      return;
-    }
-    if ((username, password)) {
-      login(username, password);
-    } else {
-      setErr("Username and password not entered...");
-      setTimeout(() => {
-        setErr("");
-        setLoading(false);
-      }, 2000);
+    const { data } = await userLogin(username, password);
+    if (data) {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
+      navigate("/");
     }
   };
 

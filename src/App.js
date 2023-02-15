@@ -1,33 +1,45 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-//@mui
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+//react-router-dom
+import { Route, Routes } from "react-router-dom";
 
-//Component's
-import Approuter from "./utils/Approuter";
-import SideBar from "./Components/SideBar";
+const ViewLayout = React.lazy(() => import("./Loyout/Layout"));
 
-//main component
-function App() {
+//importing components as lazy loading
+const AddDish = React.lazy(() => import("./Pages/AddDish"));
+const Dishes = React.lazy(() => import("./Pages/Dishes"));
+const Planner = React.lazy(() => import("./Pages/Planner"));
+const ShoppingList = React.lazy(() => import("./Pages/ShoppingList"));
+const Login = React.lazy(() => import("./Pages/Login"));
+const UpdateDish = React.lazy(() => import("./Pages/UpdateDish"));
+const AdminDashboard = React.lazy(() => import("./Pages/AdminDashboard"));
+const UpdateDishByID = React.lazy(() => import("./Pages/UpdateDishByID"));
+const Profile = React.lazy(() => import("./Components/Profile"));
+const Home = React.lazy(() => import("./Pages/Home"));
+const About = React.lazy(() => import("./Pages/About"));
+const Calculator = React.lazy(() => import("./Pages/Calculator"));
+
+function Approuter() {
   return (
-    <SideBar>
-      <Box sx={{ minHeight: "75vh" }}>
-        <Approuter />
-      </Box>
-      <Typography
-        sx={{
-          letterSpacing: "0.03em",
-          fontFamily: "Poppins",
-          marginTop: "20px",
-          fontWeight: "500",
-        }}
-        align="center"
-      >
-        Copyrights @NutriSaga'22
-      </Typography>
-    </SideBar>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="app" element={<ViewLayout />}>
+          <Route path="" element={<Home />} />
+          <Route path="dishes" element={<Dishes />} />
+          <Route path="planner" element={<Planner />} />
+          <Route path="shoppinglist" element={<ShoppingList />} />
+          <Route path="login" element={<Login />} />
+          <Route path="about" element={<About />} />
+          <Route path="calculator" element={<Calculator />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="adddish" element={<AddDish />} />
+          <Route path="updatedish" element={<UpdateDish />} />
+          <Route path="updatedish/:id" element={<UpdateDishByID />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
-export default App;
+export default Approuter;

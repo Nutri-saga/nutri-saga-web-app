@@ -1,4 +1,4 @@
-import axios from "axios";
+import AXIOS from "../services/Axios";
 
 const BASE_URL = "https://nutri-saga.onrender.com/api/v1";
 
@@ -9,7 +9,7 @@ export const getDishes = async () => {
     err: null,
   };
   try {
-    const { data } = await axios.get(`${BASE_URL}/dishes/`);
+    const { data } = await AXIOS.get(`${BASE_URL}/dishes/`);
     response.data = data.dishes;
   } catch (error) {
     response.err = error.message;
@@ -24,7 +24,7 @@ export const getDish = async (id) => {
     err: null,
   };
   try {
-    const { data } = await axios.get(`${BASE_URL}/dishes/${id}`);
+    const { data } = await AXIOS.get(`${BASE_URL}/dishes/${id}`);
 
     response.data = data.dish;
   } catch (error) {
@@ -40,7 +40,7 @@ export const deleteDish = async (id) => {
     err: null,
   };
   try {
-    const { data } = await axios.delete(`${BASE_URL}/dishes/${id}`);
+    const { data } = await AXIOS.delete(`${BASE_URL}/dishes`, { data: { id } });
     response.success = data.success;
   } catch (error) {
     response.err = error.response.data.message;
@@ -55,7 +55,7 @@ export const updateDish = async (modalData) => {
     err: null,
   };
   try {
-    const { data } = await axios.put(`${BASE_URL}/dishes/`, modalData);
+    const { data } = await AXIOS.put(`${BASE_URL}/dishes/`, modalData);
     response.success = data.success;
   } catch (error) {
     if (error.response.status === 413) {
@@ -74,13 +74,31 @@ export const addDish = async (modalData) => {
     err: null,
   };
   try {
-    const { data } = await axios.post(`${BASE_URL}/dishes/`, modalData);
+    const { data } = await AXIOS.post(`${BASE_URL}/dishes/`, modalData);
     response.success = data.success;
   } catch (error) {
     if (error.response.status === 413) {
       response.err = "Image is too large";
       return response;
     }
+    response.err = error.message;
+  }
+  return response;
+};
+
+export const userLogin = async (username, password) => {
+  const response = {
+    data: false,
+    err: null,
+  };
+  try {
+    const { data } = await AXIOS.post(`${BASE_URL}/auth/signin`, {
+      username,
+      password,
+      confirm_password: password,
+    });
+    response.data = data;
+  } catch (error) {
     response.err = error.message;
   }
   return response;

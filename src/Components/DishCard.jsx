@@ -1,142 +1,95 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 //@mui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 //Context
 import { DishContext } from "../Contexts/DishContext";
+import { CardMedia } from "@mui/material";
+import { Box } from "@mui/system";
+import styled from "@emotion/styled";
+
+const StyleBox = styled(Box)(({ theme }) => ({
+  "& .image": {
+    width: "50%",
+    border: `2px solid ${theme.palette.secondary.main}`,
+    objectFit: "cover",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  "& .content": {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.4rem",
+    "& .main-text": {
+      fontWeight: "600",
+      fontSize: "1.8vh",
+      fontFamily: "Poppins",
+      fontStyle: "none",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase",
+    },
+    "& .sub-text": {
+      fontWeight: "400",
+      fontSize: "1.5vh",
+      fontFamily: "Poppins",
+      fontStyle: "none",
+      lineHeight: "14px",
+      letterSpacing: "0.05em",
+      textTransform: "initial",
+      color: "#787878",
+    },
+  },
+}));
 
 //Component
 export default React.memo(function DishCard({ val }) {
-  const { setDish, dishes, getDish, removeDish } = useContext(DishContext);
-
-  const [cart, setCart] = useState(false);
+  const { dishes, getDish } = useContext(DishContext);
 
   useEffect(() => {
     dishes?.map((dish) => {
       if (dish._id === val._id) {
-        setCart(true);
         getDish();
       }
       return "";
     });
   }, [dishes, getDish, val]);
 
-  const handleRemove = () => {
-    val["status"] = "add";
-    removeDish(val);
-    setCart(false);
-  };
-  const handleAdd = () => {
-    val["status"] = "remove";
-    setDish(val);
-    setCart(true);
-  };
-
   return (
-    <>
-      <img
-        alt=""
-        width="220px"
-        height="220px"
-        style={{
-          borderRadius: "50%",
-          position: "relative",
-          marginBottom: "-140px",
-          marginLeft: "10px",
-        }}
-        src={val.image_url["url"]}
-      />
+    <StyleBox sx={{ width: "23%" }}>
       <Card
         className="dish-card"
         sx={{
-          width: 240,
-          height: 440,
-          boxShadow: "gray 2px 5px 15px",
-          paddingTop: "120px",
+          flex: 1,
+          border: (theme) => `1px solid ${theme.palette.secondary.main}`,
+          width: "100%",
+          height: "9rem",
+          boxShadow: "gray 1px 1px 10px",
+          display: "flex",
+          padding: "0.4rem",
         }}
       >
-        {/* <CardMedia
+        <CardMedia
+          className="image"
           component="img"
-          width="auto"
-          height="40%"
           image={val.image_url["url"]}
           alt={val.name}
-          sx={{ border: "2px solid green", borderRadius: "5px" }}
-        /> */}
-        <CardContent>
-          <Typography
-            sx={{
-              fontWeight: "600",
-              letterSpacing: "0.05em",
-              height: "100px",
-              color: "#424242",
-            }}
-            align="center"
-            gutterBottom
-            variant="h5"
-            component="div"
-          >
-            {val.name}
-          </Typography>
-          <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Servings</span>
-            {`: ${val.servings}`}
-          </Typography>
-          <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Energy</span>
-            {`: ${val.energy}g`}
-          </Typography>
-          <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Fats</span>
-            {`: ${val.fats}g`}
-          </Typography>
-          <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Protein</span>
-            {`: ${val.protein}g`}
-          </Typography>
-          <Typography align="left" gutterBottom component="div">
-            <span style={{ fontWeight: "600" }}>Calories</span>
-            {`: ${val.calories}g`}
-          </Typography>
-
-          <div style={{ marginTop: "10px" }}>
-            {" "}
-            {val["status"] === "remove" || cart ? (
-              <Button
-                fullWidth
-                sx={{ textTransform: "inherit" }}
-                variant="contained"
-                color="error"
-                onClick={handleRemove}
-              >
-                Remove Dish
-                {/* <CalendarMonthIcon
-                  sx={{ marginTop: "-5px", marginLeft: "3px" }}
-                  fontSize="small"
-                /> */}
-              </Button>
-            ) : (
-              <Button
-                fullWidth
-                sx={{ textTransform: "inherit" }}
-                variant="contained"
-                color="success"
-                onClick={handleAdd}
-              >
-                Add Dish
-                {/* <CalendarMonthIcon
-                  sx={{ marginTop: "-5px", marginLeft: "3px" }}
-                  fontSize="small"
-                /> */}
-              </Button>
-            )}
-          </div>
+        />
+        <CardContent
+          className="content"
+          sx={{ width: "50%", p: 0, m: 0, pl: 0.5 }}
+        >
+          <Typography className="main-text">{val.name}</Typography>
+          <Typography className="sub-text">Servings: {val.servings}</Typography>
+          <Typography className="sub-text">Protein: {val.protein}g</Typography>
         </CardContent>
       </Card>
-    </>
+    </StyleBox>
   );
 });
