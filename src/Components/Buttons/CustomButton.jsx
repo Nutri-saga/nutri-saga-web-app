@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
 const StyledBox = styled(Box)(({ theme }) => ({
   width: "100%",
   "& .btn": {
@@ -24,7 +26,13 @@ export default function CustomButton({ children, loading, ...restProps }) {
         sx={{ textTransform: "none" }}
         {...restProps}
       >
-        {children}
+        {loading ? (
+          <>
+            <CircularProgress size="1.6rem" sx={{ color: "#FFFFFF" }} />
+          </>
+        ) : (
+          children
+        )}
       </Button>
     </StyledBox>
   );

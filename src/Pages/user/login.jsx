@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 //Context's
-import { AuthContext } from "../Contexts/AuthContext";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 //@mui
 import Typography from "@mui/material/Typography";
@@ -13,14 +13,14 @@ import Box from "@mui/system/Box";
 import { useNavigate } from "react-router-dom";
 
 //images
-import img from "../assets/nutritionLogin.jpg";
+import img from "../../assets/nutritionLogin.jpg";
 
 //api
-import { userLogin } from "../api/userActions";
+import { userLogin } from "../../api/userActions";
 
 //Cutom Components
-import CustomTextField from "../Components/Inputs/CustomTextField";
-import CustomButton from "../Components/Buttons/CustomButton";
+import CustomTextField from "../../Components/Inputs/CustomTextField";
+import CustomButton from "../../Components/Buttons/CustomButton";
 
 //Styling
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -70,7 +70,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 //Main Component
 function Login() {
-  const { user } = useContext(AuthContext);
+  const { user, updateUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -80,7 +80,7 @@ function Login() {
   useEffect(() => {
     console.log(user);
     if (user) {
-      navigate("/");
+      navigate("/app/user/dashboard");
     }
   }, [user, navigate]);
 
@@ -101,8 +101,9 @@ function Login() {
     if (data) {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
+      updateUser();
       setLoading(false);
-      navigate("/");
+      navigate("/app/user/dashboard");
     }
   };
 

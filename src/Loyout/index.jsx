@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 
 //react-router-dom
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 //Context
 import { AuthContext } from "../Contexts/AuthContext";
@@ -18,13 +18,10 @@ import {
   Avatar,
   Button,
   CssBaseline,
-  IconButton,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Menu,
-  MenuItem,
   Tooltip,
 } from "@mui/material";
 import styled from "@emotion/styled";
@@ -82,22 +79,11 @@ const StyledToolBar = styled(Toolbar)(({ theme }) => ({
 }));
 
 export default function SideBar(props) {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const { pathname } = useLocation();
-
-  const navigate = useNavigate();
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   const openSideBar = () => {
     setOpen((prev) => !prev);
@@ -131,88 +117,22 @@ export default function SideBar(props) {
               <Typography className="saga">Saga</Typography>
             </Box>
           </Box>
-
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box>
-                <Tooltip title="My Account">
+                <Tooltip title="Dashboard">
                   {user ? (
-                    <IconButton
-                      onClick={handleOpenUserMenu}
-                      sx={{ fontSize: "12px" }}
-                    >
+                    <Link to="user/dashboard">
                       <Avatar
                         alt={user.username.toString().toUpperCase().charAt(0)}
                         src="/static/images/avatar/2.jpg"
+                        sx={{ width: "2rem", height: "2rem" }}
                       />
-                    </IconButton>
+                    </Link>
                   ) : (
-                    <IconButton
-                      onClick={handleOpenUserMenu}
-                      sx={{ fontSize: "12px" }}
-                    >
-                      <Avatar />
-                    </IconButton>
+                    <Link to="/user/login">Login</Link>
                   )}
                 </Tooltip>
-                {user ? (
-                  <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                  >
-                    <MenuItem key={1} onClick={handleCloseUserMenu}>
-                      <Typography
-                        onClick={() => navigate("/profile")}
-                        textAlign="center"
-                      >
-                        Profile
-                      </Typography>
-                    </MenuItem>
-                    <MenuItem key={2} onClick={handleCloseUserMenu}>
-                      <Typography onClick={logout} textAlign="center">
-                        Logout
-                      </Typography>
-                    </MenuItem>
-                  </Menu>
-                ) : (
-                  <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                  >
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Typography
-                        onClick={() => navigate("/login")}
-                        textAlign="center"
-                      >
-                        Login
-                      </Typography>
-                    </MenuItem>
-                  </Menu>
-                )}
               </Box>
             </Box>
           </Box>
