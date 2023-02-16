@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
 //mui
-import { Box } from "@mui/system";
+// import { Box } from "@mui/system";
 
 //Components
-import AboutCard from "../Components/AboutCard";
-import HomeSteps from "../Components/HomeSteps";
-import Stepper from "../Components/Stepper";
+// import AboutCard from "../Components/AboutCard";
+// import HomeSteps from "../Components/HomeSteps";
+// import Stepper from "../Components/Stepper";
 import { useNavigate } from "react-router-dom";
 
 function Home() {

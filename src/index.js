@@ -4,7 +4,6 @@ import App from "./App";
 
 //Context's
 import { AuthProvider } from "./Contexts/AuthContext";
-import { DishProvider } from "./Contexts/DishContext";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -16,9 +15,7 @@ root.render(
     <GlobalCssOverride>
       <Router>
         <AuthProvider>
-          <DishProvider>
-            <App />
-          </DishProvider>
+          <App />
         </AuthProvider>
       </Router>
     </GlobalCssOverride>

@@ -1,6 +1,6 @@
 import AXIOS from "../services/Axios";
 
-const BASE_URL = "https://nutri-saga.onrender.com/api/v1";
+import { BASE_URL } from "./baseUrl";
 
 //to get all dishes -- get request.
 export const getDishes = async () => {
@@ -81,24 +81,6 @@ export const addDish = async (modalData) => {
       response.err = "Image is too large";
       return response;
     }
-    response.err = error.message;
-  }
-  return response;
-};
-
-export const userLogin = async (username, password) => {
-  const response = {
-    data: false,
-    err: null,
-  };
-  try {
-    const { data } = await AXIOS.post(`${BASE_URL}/auth/signin`, {
-      username,
-      password,
-      confirm_password: password,
-    });
-    response.data = data;
-  } catch (error) {
     response.err = error.message;
   }
   return response;
